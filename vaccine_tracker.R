@@ -14,7 +14,6 @@ old_data <- read_csv("vaccine_db.csv") %>%
   mutate(date = as.character(date))
 
 ## add new data and write back
-return <- fromJSON("https://raw.githubusercontent.com/COVID19Tracking/covid-tracking-data/master/data/cdc_vaccinations.json")
 new_data <- return[[2]] %>%
   clean_names() %>%
   distinct(date, location, .keep_all = TRUE)
@@ -51,6 +50,11 @@ vaccines <- vaccines %>%
   # max_date_ind
   mutate(max_date_ind = ifelse(date == max(date), "Yes", "No"))
 
+## add US abbr
+vaccines <- vaccines %>%
+  group_by(state) %>%
+  fill(state_abb, .direction = "up")
+
 
 ## categorize states and non-states
 territories <- c("American Samoa",
@@ -73,6 +77,35 @@ vaccines <- vaccines %>%
          category = ifelse(state %in% territories, "territory", category),
          category = ifelse(state %in% fed_programs, "federal program", category),
          category = ifelse(state %in% "United States", "United States", category))
+
+## add new cases from CTP
+ctp <- fromJSON("https://api.covidtracking.com/v1/states/daily.json") %>%
+  select(state_abb = state, date, new_reported_cases = positiveIncrease) %>%
+  mutate(date = ymd(date))
+
+nat_ctp <- ctp %>%
+  group_by(date) %>%
+  summarize(new_reported_cases =sum(new_reported_cases, na.rm = TRUE)) %>%
+  mutate(state_abb = "US")
+
+ctp <- bind_rows(ctp, nat_ctp)
+
+vaccines <- left_join(vaccines, ctp, by = c("state_abb", "date"))
+
+## add estimate for new infections from covid-19 projections
+youyang <- read_csv("https://raw.githubusercontent.com/youyanggu/covid19_projections/master/infection_estimates/latest_all_estimates_states.csv") %>%
+  select(state_abb = state, date, new_infected_est = new_infected_mean) %>%
+  mutate(date = ymd(date) + 15,
+         new_infected_est = as.integer(new_infected_est))
+
+nat_youyang <- youyang %>%
+  group_by(date) %>%
+  summarize(new_infected_est =sum(new_infected_est, na.rm = TRUE)) %>%
+  mutate(state_abb = "US")
+
+youyang <- bind_rows(youyang, nat_youyang)
+
+vaccines <- left_join(vaccines, youyang, by = c("state_abb", "date"))
 
 # export  
 write_csv(vaccines, "vaccine_viz.csv")
