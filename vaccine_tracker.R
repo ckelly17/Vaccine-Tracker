@@ -3,13 +3,13 @@ library(tidyverse)
 library(janitor)
 library(lubridate)
 
-setwd("C:/Users/ckelly/Documents/Covid-Personal - Copy/Vaccine Tracker/Vaccine-Tracker")
+setwd("/Users/conorkelly/Documents/Vaccine-Tracker")
 
 ## data source from CDC
 return <- fromJSON("https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxData?id=vaccination_data")
 
 ## import existing data
-vaccines <- read_csv("vaccine_db.csv") %>%
+old_data <- read_csv("vaccine_db.csv") %>%
   mutate(date = as.character(date))
 
 ## add new data and write back
@@ -18,7 +18,12 @@ new_data <- return[[2]] %>%
   clean_names() %>%
   distinct(date, location, .keep_all = TRUE)
 
-vaccines <- bind_rows(vaccines, new_data, j5) %>%
+# save a copy
+date <- as.character(max(ymd(new_data$date)))
+write_csv(new_data, paste0("daily_backup/", date, ".csv"))
+
+# bind to old
+vaccines <- bind_rows(old_data, new_data) %>%
   distinct(date, location, .keep_all = TRUE) 
 
 ## write to main repo
@@ -67,7 +72,24 @@ vaccines <- vaccines %>%
          category = ifelse(state %in% territories, "territory", category),
          category = ifelse(state %in% fed_programs, "federal program", category),
          category = ifelse(state %in% "United States", "United States", category))
-  
+
+# export  
 write_csv(vaccines, "vaccine_viz.csv")
+
+# what are the categories?
+vaccines %>% 
+  group_by(date) %>% 
+  filter(category %in% "United States") %>%
+  summarise(total = sum(doses_administered))
+
+vaccines %>% 
+  group_by(date) %>% 
+  filter(category %in% "state") %>%
+  summarise(total = sum(doses_administered))
+
+vaccines %>% 
+  group_by(date) %>% 
+  filter(!category %in% "United States") %>%
+  summarise(total = sum(doses_administered))
 
 
