@@ -3,7 +3,8 @@ library(tidyverse)
 library(janitor)
 library(lubridate)
 
-setwd("/Users/conorkelly/Documents/Vaccine-Tracker")
+# setwd("/Users/conorkelly/Documents/Vaccine-Tracker")
+setwd("C:/Users/ckelly/Documents/Covid-Personal - Copy/Vaccine Tracker/Vaccine-Tracker")
 
 ## data source from CDC
 return <- fromJSON("https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxData?id=vaccination_data")
