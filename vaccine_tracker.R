@@ -20,13 +20,24 @@ new_data <- return[[2]] %>%
   clean_names() %>%
   distinct(date, location, .keep_all = TRUE)
 
+# for skipped days
+yesterday <- new_data %>%
+  mutate(date = as.character(ymd(date) - 1))
+
+# day before
+day_before <- new_data %>%
+  mutate(date = as.character(ymd(date) - 2))
+
 # save a copy
 date <- as.character(max(ymd(new_data$date)))
 write_csv(new_data, paste0("daily_backup/", date, ".csv"))
 
 # bind to old
-vaccines <- bind_rows(old_data, new_data) %>%
-  distinct(date, location, .keep_all = TRUE) 
+vaccines <- bind_rows(old_data, new_data, yesterday, day_before) %>%
+  distinct(date, location, .keep_all = TRUE) %>%
+  group_by(location, date) %>%
+  filter(doses_administered == min(doses_administered, na.rm = TRUE)) %>%
+  ungroup()
 
 ## write to main repo
 write_csv(vaccines, "vaccine_db.csv")
