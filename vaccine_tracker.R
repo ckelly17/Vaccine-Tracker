@@ -2,11 +2,13 @@ library(jsonlite)
 library(tidyverse)
 library(janitor)
 library(lubridate)
-
-last_date <- 
+library(googlesheets4)
 
 setwd("/Users/conorkelly/Documents/Vaccine-Tracker")
 #setwd("C:/Users/ckelly/Documents/Covid-Personal - Copy/Vaccine Tracker/Vaccine-Tracker")
+
+# google credentials
+gs4_auth(email = "conor.richard.kelly@gmail.com")
 
 ## data source from CDC
 return <- fromJSON("https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxData?id=vaccination_data")
@@ -122,21 +124,13 @@ vaccines <- left_join(vaccines, youyang, by = c("state_abb", "date"))
 
 # export  
 write_csv(vaccines, "vaccine_viz.csv")
+sheet_write(vaccines, ss = "https://docs.google.com/spreadsheets/d/1ezajFR0idY0ifWumhn0J8G0UzCl_qF__5D7mwgR4PD8/edit#gid=0")
 
-# what are the categories?
+# by date
 vaccines %>% 
   group_by(date) %>% 
   filter(category %in% "United States") %>%
   summarise(total = sum(doses_administered))
 
-vaccines %>% 
-  group_by(date) %>% 
-  filter(category %in% "state") %>%
-  summarise(total = sum(doses_administered))
-
-vaccines %>% 
-  group_by(date) %>% 
-  filter(!category %in% "United States") %>%
-  summarise(total = sum(doses_administered))
 
 
