@@ -15,20 +15,24 @@ return <- fromJSON("https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxDa
 
 ## import existing data
 old_data <- read_csv("vaccine_db.csv") %>%
-  mutate(date = as.character(date))
+  mutate(date = as.character(date),
+         skipped = "No")
 
 ## add new data and write back
 new_data <- return[[2]] %>%
   clean_names() %>%
-  distinct(date, location, .keep_all = TRUE)
+  distinct(date, location, .keep_all = TRUE) %>%
+  mutate(skipped = "No")
 
 # for skipped days
 yesterday <- new_data %>%
-  mutate(date = as.character(ymd(date) - 1))
+  mutate(date = as.character(ymd(date) - 1),
+         skipped = "Yes")
 
 # day before
 day_before <- new_data %>%
-  mutate(date = as.character(ymd(date) - 2))
+  mutate(date = as.character(ymd(date) - 2),
+         skipped = "Yes")
 
 # save a copy
 date <- as.character(max(ymd(new_data$date)))
@@ -57,7 +61,16 @@ vaccines <- vaccines %>%
   mutate(n = row_number()) %>%
   
   # calculate daily change
-  mutate(new_dist = ifelse(n >= 2, doses_distributed - lag(doses_distributed, 1), 0),
+  mutate(doses_distributed = ifelse(skipped %in% "Yes", lag(doses_distributed), doses_distributed),
+         doses_administered = ifelse(skipped %in% "Yes", lag(doses_administered), doses_administered),
+         
+         # hot fix for 2021-01-11
+         doses_distributed = ifelse(date  == "2021-01-09", lag(doses_distributed), doses_distributed),
+         doses_distributed = ifelse(date  == "2021-01-10", lag(doses_distributed), doses_distributed),
+         doses_administered = ifelse(date  == "2021-01-09", lag(doses_administered), doses_administered),
+         doses_administered = ifelse(date  == "2021-01-10", lag(doses_administered), doses_administered),
+    
+         new_dist = ifelse(n >= 2, doses_distributed - lag(doses_distributed, 1), 0),
          new_admin = ifelse(n >= 2, doses_administered - lag(doses_administered, 1), 0)) %>%
   
   ungroup() %>%
@@ -124,7 +137,7 @@ vaccines <- left_join(vaccines, youyang, by = c("state_abb", "date"))
 
 # export  
 write_csv(vaccines, "vaccine_viz.csv")
-sheet_write(vaccines, ss = "https://docs.google.com/spreadsheets/d/1ezajFR0idY0ifWumhn0J8G0UzCl_qF__5D7mwgR4PD8/edit#gid=0")
+sheet_write(vaccines, ss = "https://docs.google.com/spreadsheets/d/1ezajFR0idY0ifWumhn0J8G0UzCl_qF__5D7mwgR4PD8/edit#gid=0", sheet = "vaccines")
 
 # by date
 vaccines %>% 
