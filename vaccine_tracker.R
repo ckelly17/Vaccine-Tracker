@@ -14,24 +14,26 @@ gs4_auth(email = "conor.richard.kelly@gmail.com")
 return <- fromJSON("https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxData?id=vaccination_data")
 
 ## import existing data
-old_data <- read_csv("vaccine_db.csv") %>%
+old_data <- read_csv("https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv") %>%
   mutate(date = as.character(date),
-         skipped = "No")
+         skipped = "No") %>%
+  filter(!is.na(date))
 
 ## add new data and write back
 new_data <- return[[2]] %>%
   clean_names() %>%
+  mutate(date = as.character(mdy(date))) %>%
   distinct(date, location, .keep_all = TRUE) %>%
   mutate(skipped = "No")
 
 # for skipped days
 yesterday <- new_data %>%
-  mutate(date = as.character(ymd(date) - 1),
+  mutate(date = as.character(as.Date(date) - 1),
          skipped = "Yes")
 
 # day before
 day_before <- new_data %>%
-  mutate(date = as.character(ymd(date) - 2),
+  mutate(date = as.character(as.Date(date) - 2),
          skipped = "Yes")
 
 # save a copy
@@ -63,15 +65,22 @@ vaccines <- vaccines %>%
   # calculate daily change
   mutate(doses_distributed = ifelse(skipped %in% "Yes", lag(doses_distributed), doses_distributed),
          doses_administered = ifelse(skipped %in% "Yes", lag(doses_administered), doses_administered),
+         administered_dose1 = ifelse(skipped %in% "Yes", lag(administered_dose1), administered_dose1),
+         administered_dose2 = ifelse(skipped %in% "Yes", lag(administered_dose2), administered_dose2),
          
          # hot fix for 2021-01-11
          doses_distributed = ifelse(date  == "2021-01-09", lag(doses_distributed), doses_distributed),
          doses_distributed = ifelse(date  == "2021-01-10", lag(doses_distributed), doses_distributed),
          doses_administered = ifelse(date  == "2021-01-09", lag(doses_administered), doses_administered),
          doses_administered = ifelse(date  == "2021-01-10", lag(doses_administered), doses_administered),
-    
+        
+         # all doses
          new_dist = ifelse(n >= 2, doses_distributed - lag(doses_distributed, 1), 0),
-         new_admin = ifelse(n >= 2, doses_administered - lag(doses_administered, 1), 0)) %>%
+         new_admin = ifelse(n >= 2, doses_administered - lag(doses_administered, 1), 0),
+         
+         # dose 1 and 2
+         new_dose1 = ifelse(n >= 2, administered_dose1 - lag(administered_dose1, 1), 0),
+         new_dose2 = ifelse(n >= 2, administered_dose2 - lag(administered_dose2, 1), 0)) %>%
   
   ungroup() %>%
   
