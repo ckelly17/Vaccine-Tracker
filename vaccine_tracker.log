@@ -7096,3 +7096,233 @@ Writing to sheet "vaccines"
  9 2020-12-28 2127143
 10 2020-12-29 2127143
 # ... with 14 more rows
+Warning message:
+package 'jsonlite' was built under R version 3.6.2 
+-- Attaching packages --------------------------------------- tidyverse 1.3.0 --
+v ggplot2 3.3.2     v purrr   0.3.4
+v tibble  3.0.4     v dplyr   1.0.2
+v tidyr   1.1.2     v stringr 1.4.0
+v readr   1.3.1     v forcats 0.4.0
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter()  masks stats::filter()
+x purrr::flatten() masks jsonlite::flatten()
+x dplyr::lag()     masks stats::lag()
+Warning messages:
+1: package 'ggplot2' was built under R version 3.6.2 
+2: package 'tibble' was built under R version 3.6.2 
+3: package 'tidyr' was built under R version 3.6.2 
+4: package 'purrr' was built under R version 3.6.2 
+5: package 'dplyr' was built under R version 3.6.2 
+
+Attaching package: 'janitor'
+
+The following objects are masked from 'package:stats':
+
+    chisq.test, fisher.test
+
+Warning message:
+package 'janitor' was built under R version 3.6.2 
+
+Attaching package: 'lubridate'
+
+The following objects are masked from 'package:base':
+
+    date, intersect, setdiff, union
+
+Warning message:
+package 'lubridate' was built under R version 3.6.2 
+Warning message:
+package 'googlesheets4' was built under R version 3.6.2 
+Registered S3 method overwritten by 'openssl':
+  method      from
+  print.bytes Rcpp
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  date = col_date(format = ""),
+  location = col_character(),
+  short_name = col_character(),
+  long_name = col_character(),
+  skipped = col_character()
+)
+See spec(...) for full column specifications.
+`summarise()` ungrouping output (override with `.groups` argument)
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  date = col_date(format = ""),
+  state = col_character()
+)
+See spec(...) for full column specifications.
+`summarise()` ungrouping output (override with `.groups` argument)
+Writing to "vaccine_viz"
+Writing to sheet "vaccines"
+`summarise()` ungrouping output (override with `.groups` argument)
+# A tibble: 24 x 2
+   date         total
+   <date>       <dbl>
+ 1 2020-12-20  556208
+ 2 2020-12-21  614117
+ 3 2020-12-22  614117
+ 4 2020-12-23 1008025
+ 5 2020-12-24 1008025
+ 6 2020-12-25 1008025
+ 7 2020-12-26 1944585
+ 8 2020-12-27 1944585
+ 9 2020-12-28 2127143
+10 2020-12-29 2127143
+# ... with 14 more rows
+Warning message:
+package 'jsonlite' was built under R version 3.6.2 
+-- Attaching packages --------------------------------------- tidyverse 1.3.0 --
+v ggplot2 3.3.2     v purrr   0.3.4
+v tibble  3.0.4     v dplyr   1.0.2
+v tidyr   1.1.2     v stringr 1.4.0
+v readr   1.3.1     v forcats 0.4.0
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter()  masks stats::filter()
+x purrr::flatten() masks jsonlite::flatten()
+x dplyr::lag()     masks stats::lag()
+Warning messages:
+1: package 'ggplot2' was built under R version 3.6.2 
+2: package 'tibble' was built under R version 3.6.2 
+3: package 'tidyr' was built under R version 3.6.2 
+4: package 'purrr' was built under R version 3.6.2 
+5: package 'dplyr' was built under R version 3.6.2 
+
+Attaching package: 'janitor'
+
+The following objects are masked from 'package:stats':
+
+    chisq.test, fisher.test
+
+Warning message:
+package 'janitor' was built under R version 3.6.2 
+
+Attaching package: 'lubridate'
+
+The following objects are masked from 'package:base':
+
+    date, intersect, setdiff, union
+
+Warning message:
+package 'lubridate' was built under R version 3.6.2 
+Warning message:
+package 'googlesheets4' was built under R version 3.6.2 
+Registered S3 method overwritten by 'openssl':
+  method      from
+  print.bytes Rcpp
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  date = col_date(format = ""),
+  location = col_character(),
+  short_name = col_character(),
+  long_name = col_character(),
+  skipped = col_character()
+)
+See spec(...) for full column specifications.
+`summarise()` ungrouping output (override with `.groups` argument)
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  date = col_date(format = ""),
+  state = col_character()
+)
+See spec(...) for full column specifications.
+`summarise()` ungrouping output (override with `.groups` argument)
+Auto-refreshing stale OAuth token.
+Writing to "vaccine_viz"
+Writing to sheet "vaccines"
+`summarise()` ungrouping output (override with `.groups` argument)
+# A tibble: 24 x 2
+   date         total
+   <date>       <dbl>
+ 1 2020-12-20  556208
+ 2 2020-12-21  614117
+ 3 2020-12-22  614117
+ 4 2020-12-23 1008025
+ 5 2020-12-24 1008025
+ 6 2020-12-25 1008025
+ 7 2020-12-26 1944585
+ 8 2020-12-27 1944585
+ 9 2020-12-28 2127143
+10 2020-12-29 2127143
+# ... with 14 more rows
+Warning message:
+package 'jsonlite' was built under R version 3.6.2 
+-- Attaching packages --------------------------------------- tidyverse 1.3.0 --
+v ggplot2 3.3.2     v purrr   0.3.4
+v tibble  3.0.4     v dplyr   1.0.2
+v tidyr   1.1.2     v stringr 1.4.0
+v readr   1.3.1     v forcats 0.4.0
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter()  masks stats::filter()
+x purrr::flatten() masks jsonlite::flatten()
+x dplyr::lag()     masks stats::lag()
+Warning messages:
+1: package 'ggplot2' was built under R version 3.6.2 
+2: package 'tibble' was built under R version 3.6.2 
+3: package 'tidyr' was built under R version 3.6.2 
+4: package 'purrr' was built under R version 3.6.2 
+5: package 'dplyr' was built under R version 3.6.2 
+
+Attaching package: 'janitor'
+
+The following objects are masked from 'package:stats':
+
+    chisq.test, fisher.test
+
+Warning message:
+package 'janitor' was built under R version 3.6.2 
+
+Attaching package: 'lubridate'
+
+The following objects are masked from 'package:base':
+
+    date, intersect, setdiff, union
+
+Warning message:
+package 'lubridate' was built under R version 3.6.2 
+Warning message:
+package 'googlesheets4' was built under R version 3.6.2 
+Registered S3 method overwritten by 'openssl':
+  method      from
+  print.bytes Rcpp
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  date = col_date(format = ""),
+  location = col_character(),
+  short_name = col_character(),
+  long_name = col_character(),
+  skipped = col_character()
+)
+See spec(...) for full column specifications.
+`summarise()` ungrouping output (override with `.groups` argument)
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  date = col_date(format = ""),
+  state = col_character()
+)
+See spec(...) for full column specifications.
+`summarise()` ungrouping output (override with `.groups` argument)
+Auto-refreshing stale OAuth token.
+Writing to "vaccine_viz"
+Writing to sheet "vaccines"
+`summarise()` ungrouping output (override with `.groups` argument)
+# A tibble: 24 x 2
+   date         total
+   <date>       <dbl>
+ 1 2020-12-20  556208
+ 2 2020-12-21  614117
+ 3 2020-12-22  614117
+ 4 2020-12-23 1008025
+ 5 2020-12-24 1008025
+ 6 2020-12-25 1008025
+ 7 2020-12-26 1944585
+ 8 2020-12-27 1944585
+ 9 2020-12-28 2127143
+10 2020-12-29 2127143
+# ... with 14 more rows

@@ -13,18 +13,18 @@ gs4_auth(email = "conor.richard.kelly@gmail.com")
 ## data source from CDC
 return <- fromJSON("https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxData?id=vaccination_data")
 
-## import existing data
+## import existing data cached from previous day
 old_data <- read_csv("https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv") %>%
   mutate(date = as.character(date),
          skipped = "No") %>%
   filter(!is.na(date))
 
-## add new data and write back
+## get new data
 new_data <- return[[2]] %>%
   clean_names() %>%
   mutate(date = as.character(mdy(date))) %>%
   distinct(date, location, .keep_all = TRUE) %>%
-  mutate(skipped = "No")
+  mutate(skipped = "No") # to flag if CDC did not upload for some days
 
 # for skipped days
 yesterday <- new_data %>%
@@ -44,7 +44,7 @@ write_csv(new_data, paste0("daily_backup/", date, ".csv"))
 vaccines <- bind_rows(old_data, new_data, yesterday, day_before) %>%
   distinct(date, location, .keep_all = TRUE) %>%
   group_by(location, date) %>%
-  filter(doses_administered == min(doses_administered, na.rm = TRUE)) %>%
+  filter(doses_administered == min(doses_administered, na.rm = TRUE)) %>% # to get rid of duplicates for skipped days
   ungroup()
 
 ## write to main repo
@@ -86,6 +86,13 @@ vaccines <- vaccines %>%
   
   # max_date_ind
   mutate(max_date_ind = ifelse(date == max(date), "Yes", "No"))
+
+## adding in dose 1/2 etc. on 1/12
+vaccines <- vaccines %>%
+  mutate(unknown_dose = ifelse(date < "2021-01-12", doses_administered, NA),
+         unknown_dose = ifelse(date >= "2021-01-12", doses_administered - administered_dose1 - administered_dose2, unknown_dose))
+
+
 
 ## add US abbr
 vaccines <- vaccines %>%
