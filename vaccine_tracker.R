@@ -10,9 +10,6 @@ setwd("/Users/conorkelly/Documents/Vaccine-Tracker")
 # google credentials
 gs4_auth(email = "conor.richard.kelly@gmail.com")
 
-## data source from CDC
-return <- fromJSON("https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxData?id=vaccination_data")
-
 ## import existing data cached from previous day
 old_data <- read_csv("https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv") %>%
   mutate(date = as.character(date),
@@ -20,9 +17,11 @@ old_data <- read_csv("https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker
   filter(!is.na(date))
 
 ## get new data
+return <- fromJSON("https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxData?id=vaccination_data")
+
 new_data <- return[[2]] %>%
   clean_names() %>%
-  mutate(date = as.character(mdy(date))) %>%
+  mutate(date = as.character(ymd(date))) %>%
   distinct(date, location, .keep_all = TRUE) %>%
   mutate(skipped = "No") # to flag if CDC did not upload for some days
 
@@ -41,17 +40,17 @@ date <- as.character(max(ymd(new_data$date)))
 write_csv(new_data, paste0("daily_backup/", date, ".csv"))
 
 # bind to old
-vaccines <- bind_rows(old_data, new_data, yesterday, day_before) %>%
+vaccines_raw <- bind_rows(old_data, new_data, yesterday, day_before) %>%
   distinct(date, location, .keep_all = TRUE) %>%
   group_by(location, date) %>%
   filter(doses_administered == min(doses_administered, na.rm = TRUE)) %>% # to get rid of duplicates for skipped days
   ungroup()
 
 ## write to main repo
-write_csv(vaccines, "vaccine_db.csv")
+write_csv(vaccines_raw, "vaccine_db.csv")
 
 ## clean for viz
-vaccines <- vaccines %>%
+vaccines <- vaccines_raw %>%
   rename(state_abb = location,
          state = long_name,
          pop = census2019) %>%
@@ -89,16 +88,13 @@ vaccines <- vaccines %>%
 
 ## adding in dose 1/2 etc. on 1/12
 vaccines <- vaccines %>%
-  mutate(unknown_dose = ifelse(date < "2021-01-12", doses_administered, NA),
-         unknown_dose = ifelse(date >= "2021-01-12", doses_administered - administered_dose1 - administered_dose2, unknown_dose))
-
-
+  mutate(unknown_dose = ifelse(date < "2021-01-12", doses_administered, 0))
+         #unknown_dose = ifelse(date >= "2021-01-12", doses_administered - administered_dose1 - administered_dose2, unknown_dose))
 
 ## add US abbr
 vaccines <- vaccines %>%
   group_by(state) %>%
   fill(state_abb, .direction = "up")
-
 
 ## categorize states and non-states
 territories <- c("American Samoa",
