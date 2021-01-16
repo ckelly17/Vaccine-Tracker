@@ -1,0 +1,54 @@
+entity,vaccines_administered,state,date,timestamp
+Alabama,8231,Alabama ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Alaska,107,Alaska ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Arizona,8349,Ari zona ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Arkansas,839,Arkansas ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+California,49265,Cali forni a ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Chicago,3790,Chi cago ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Colorado,10018,Colorado ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Connecticut,28052,Connecticut ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Delaware,3232,Delaware ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+District of Columbia,972,District of Columbia ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Florida,51193,Florida ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Georgia,15265,Georgi a ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Hawaii,3706,Hawai i ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Idaho,489,Idaho ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Illinois(excl.Chicago),20214,Illinois (excl. Chicago) ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Indiana,18140,Indiana ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Iowa,13012,Iowa ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Kansas,6021,Kansas ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Kentucky,11172,Kentucky ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Louisiana,8471,Louisiana ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Maine,3711,Mai ne ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Maryland,20921,Maryland ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Massachusetts,36712,Massachusetts ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Michigan,21449,Mi chi gan ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Minnesota,14269,Minnesota ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Mississippi,3894,Mi ssi ssi ppi ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Missouri,13294,Mi ssouri ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Montana,1045,Montana ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Nebraska,1917,Nebraska ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Nevada,3706,Nevada ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+NewHampshire,8847,New Hampshire ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+New Jersey,30643,New Jersey ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+NewMexico,3712,New Mexi co ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+NewYork(incl.NYC),46690,New York (i ncl. NYC) ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+North Carolina,17358,North Carolina ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+NorthDakota,1289,North Dakota ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Ohio,45075,Ohi o ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Oklahoma,3832,Oklahoma ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Oregon,3938,Oregon ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Pennsylvania(excl.Philadelphia),68331,Pennsylvania (excl. Philadelphia) ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Philadelphia,3807,Philadelphia ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Puerto Rico,NA,Puerto Rico ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+RhodeIsland,5772,Rhode Island ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+South Carolina,10019,South Carolina ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+SouthDakota,359,South Dakota ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Tennessee,5864,Tennessee ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Texas,31850,Texas ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Utah,3829,Utah ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Vermont,2316,Vermont ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Virginia,23542,Vi rgi ni a ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Washington,6088,Washington ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Wisconsin,12408,Wi sconsi n ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
+Wyoming,22,Wyoming ,Data as of 1/14,##------ Fri Jan 15 06:47:55 2021 ------##
