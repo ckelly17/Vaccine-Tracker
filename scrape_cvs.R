@@ -1,5 +1,6 @@
 library(pdftools)
 library(tidyverse)
+library(lubridate)
 
 ## read raw data from cvs
 cvs_raw <- pdf_text("https://cvshealth.com/sites/default/files/cvs-health-covid-19-vaccination-data.pdf") %>%
@@ -58,9 +59,12 @@ cvs_vaccines <- cvs_vaccines %>%
          entity = ifelse(entity %in% "NewJersey", "New Jersey", entity),
          entity = ifelse(entity %in% "PuertoRico", "Puerto Rico", entity),
          
-         date = data_date,
+         date = str_replace(data_date, "Data as of ", ""),
+         date = ymd(paste0("2020/", date)),
          
          timestamp = timestamp())
 
-write_csv(cvs_vaccines, "daily_backup_cvs/cvs 2020-01-15.csv")
+date <- as.character(max(cvs_vaccines$date, na.rm = TRUE))
+
+write_csv(cvs_vaccines, paste0("daily_backup_cvs/cvs", date, ".csv"))
 
