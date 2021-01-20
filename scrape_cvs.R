@@ -3,15 +3,16 @@ library(tidyverse)
 library(lubridate)
 
 ## read raw data from cvs
-cvs_raw <- pdf_text("https://cvshealth.com/sites/default/files/cvs-health-covid-19-vaccination-data.pdf") %>%
+cvs_raw <- pdf_text("https://cvshealth.com/sites/default/files/cvs-health-covid-19-vaccination-data.pdf")
+cvs1 <- str_replace_all(cvs_raw, "1/25", "") %>%
   read_lines()
 
-data_date <- as.character(cvs_raw[1])
+data_date <- as.character(cvs1[1])
 
 ## clean up
-cvs <- cvs_raw[15:67] %>%
+cvs <- cvs1[15:67] %>%
   str_squish() %>%
-  str_split("Activated") # delineates the state name from the other columns
+  str_split("2020") # delineates the state name from the other columns
 
 # result is a list with nested elements for each state
 
@@ -27,7 +28,8 @@ vax <- tibble() # empty dataframe to append results to
     x <- as.matrix(cvs[[i]]) %>%
       t()
     y <- as_tibble(x)
-    vax <- bind_rows(vax, y)
+    vax <- bind_rows(vax, y) %>%
+      select(V1, V2)
   }
 
 ## get column of state names
@@ -35,7 +37,9 @@ states_col <- as_tibble(vax$V1)
 
 ## isolate total vaccinations
 data <- vax %>% select(V2) 
-text <- as_tibble(str_split_fixed(data$V2, " ", 8)) # split column into eight with space delimeters
+text1 <- as_tibble(str_split_fixed(data$V2, "Complete", 7)) # split column into four with space delimeters
+text2 <- as_tibble(str_split_fixed(text1$V2, "Activated", n = 10))
+text3 <- str_split_fixed(text2$V1, " ", n = 10)
 total_vax <- text %>% select(V5) # total vaccinations is the fifth column
 
 ## get final dataframe

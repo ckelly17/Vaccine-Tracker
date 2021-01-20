@@ -1,54 +1,54 @@
 entity,vaccines_administered,state,date,timestamp
-Alabama,8654,Alabama ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Alaska,107,Alaska ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Arizona,8645,Ari zona ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Arkansas,839,Arkansas ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-California,51793,Cali forni a ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Chicago,4037,Chi cago ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Colorado,10639,Colorado ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Connecticut,28254,Connecticut ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Delaware,3232,Delaware ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-District of Columbia,972,District of Columbia ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Florida,51472,Florida ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Georgia,16293,Georgi a ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Hawaii,3706,Hawai i ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Idaho,489,Idaho ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Illinois(excl.Chicago),21614,Illinois (excl. Chicago) ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Indiana,19988,Indiana ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Iowa,13623,Iowa ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Kansas,6737,Kansas ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Kentucky,11718,Kentucky ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Louisiana,8868,Louisiana ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Maine,3712,Mai ne ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Maryland,21364,Maryland ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Massachusetts,37644,Massachusetts ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Michigan,21715,Mi chi gan ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Minnesota,14390,Minnesota ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Mississippi,4398,Mi ssi ssi ppi ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Missouri,14407,Mi ssouri ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Montana,1264,Montana ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Nebraska,1956,Nebraska ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Nevada,3760,Nevada ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-NewHampshire,8848,New Hampshire ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-New Jersey,31483,New Jersey ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-NewMexico,3785,New Mexi co ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-NewYork(incl.NYC),47001,New York (i ncl. NYC) ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-North Carolina,17869,North Carolina ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-NorthDakota,1443,North Dakota ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Ohio,45992,Ohi o ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Oklahoma,3957,Oklahoma ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Oregon,4128,Oregon ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Pennsylvania(excl.Philadelphia),70781,Pennsylvania (excl. Philadelphia) ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Philadelphia,4079,Philadelphia ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Puerto Rico,NA,Puerto Rico ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-RhodeIsland,5973,Rhode Island ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-South Carolina,10796,South Carolina ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-SouthDakota,359,South Dakota ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Tennessee,6131,Tennessee ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Texas,34300,Texas ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Utah,3924,Utah ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Vermont,2316,Vermont ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Virginia,25644,Vi rgi ni a ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Washington,6419,Washington ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Wisconsin,12709,Wi sconsi n ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
-Wyoming,22,Wyoming ,2020-01-15,##------ Sat Jan 16 19:45:43 2021 ------##
+Alabama,8654,Alabama ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Alaska,107,Alaska ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Arizona,8645,Ari zona ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Arkansas,839,Arkansas ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+California,51793,Cali forni a ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Chicago,4037,Chi cago ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Colorado,10639,Colorado ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Connecticut,28254,Connecticut ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Delaware,3232,Delaware ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+District of Columbia,972,District of Columbia ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Florida,51472,Florida ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Georgia,16293,Georgi a ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Hawaii,3706,Hawai i ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Idaho,489,Idaho ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Illinois(excl.Chicago),21614,Illinois (excl. Chicago) ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Indiana,19988,Indiana ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Iowa,13623,Iowa ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Kansas,6737,Kansas ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Kentucky,11718,Kentucky ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Louisiana,8868,Louisiana ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Maine,3712,Mai ne ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Maryland,21364,Maryland ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Massachusetts,37644,Massachusetts ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Michigan,21715,Mi chi gan ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Minnesota,14390,Minnesota ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Mississippi,4398,Mi ssi ssi ppi ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Missouri,14407,Mi ssouri ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Montana,1264,Montana ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Nebraska,1956,Nebraska ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Nevada,3760,Nevada ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+NewHampshire,8848,New Hampshire ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+New Jersey,31483,New Jersey ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+NewMexico,3785,New Mexi co ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+NewYork(incl.NYC),47001,New York (i ncl. NYC) ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+North Carolina,17869,North Carolina ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+NorthDakota,1443,North Dakota ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Ohio,45992,Ohi o ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Oklahoma,3957,Oklahoma ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Oregon,4128,Oregon ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Pennsylvania(excl.Philadelphia),70781,Pennsylvania (excl. Philadelphia) ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Philadelphia,4079,Philadelphia ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Puerto Rico,NA,Puerto Rico ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+RhodeIsland,5973,Rhode Island ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+South Carolina,10796,South Carolina ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+SouthDakota,359,South Dakota ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Tennessee,6131,Tennessee ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Texas,34300,Texas ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Utah,3924,Utah ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Vermont,2316,Vermont ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Virginia,25644,Vi rgi ni a ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Washington,6419,Washington ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Wisconsin,12709,Wi sconsi n ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##
+Wyoming,22,Wyoming ,2020-01-15,##------ Sun Jan 17 22:45:48 2021 ------##

@@ -13,7 +13,8 @@ gs4_auth(email = "conor.richard.kelly@gmail.com")
 ## import existing data cached from previous day
 old_data <- read_csv("https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv") %>%
   mutate(date = as.character(date),
-         skipped = "No") %>%
+         skipped = "No",
+         skip_n = 0) %>%
   filter(!is.na(date))
 
 ## get new data
@@ -23,25 +24,64 @@ new_data <- return[[2]] %>%
   clean_names() %>%
   mutate(date = as.character(ymd(date))) %>%
   distinct(date, location, .keep_all = TRUE) %>%
-  mutate(skipped = "No") # to flag if CDC did not upload for some days
+  mutate(skipped = "No",
+         skip_n = 0) # to flag if CDC did not upload for some days
+
+date_cutoff <- ymd(max(new_data$date, na.rm = TRUE))
 
 # for skipped days
 yesterday <- new_data %>%
   mutate(date = as.character(as.Date(date) - 1),
-         skipped = "Yes")
+         skipped = "Yes",
+         skip_n = 1)
 
 # day before
 day_before <- new_data %>%
   mutate(date = as.character(as.Date(date) - 2),
-         skipped = "Yes")
+         skipped = "Yes",
+         skip_n = 2)
+
+# n-3
+three_days_ago <- new_data %>%
+  mutate(date = as.character(as.Date(date) - 3),
+         skipped = "Yes",
+         skip_n = 3)
 
 # save a copy
 date <- as.character(max(ymd(new_data$date)))
 write_csv(new_data, paste0("daily_backup/", date, ".csv"))
 
+## add skipped values to old
+last <- old_data %>%
+  group_by(long_name) %>%
+  mutate(date = ymd(date)) %>%
+  filter(date == max(date, na.rm = TRUE)) %>%
+  ungroup()
+
+# n + 1
+n1 <- last %>%
+  mutate(date = date + 1)
+
+# n +2
+n2 <- last %>%
+  mutate(date = date + 2)
+
+# n + 3
+n3 <- last %>%
+  mutate(date = date + 3)
+
+temp <- old_data %>%
+  mutate(date = ymd(date)) %>%
+  bind_rows(n1, n2, n3) %>%
+  filter(date < date_cutoff) %>%
+  mutate(date = as.character(date))
+
+# vaccines_raw <- bind_rows(temp, new_data, yesterday, day_before, three_days_ago) %>%
+
 # bind to old
-vaccines_raw <- bind_rows(old_data, new_data, yesterday, day_before) %>%
+vaccines_raw <- bind_rows(temp, new_data) %>%
   distinct(date, location, .keep_all = TRUE) %>%
+  arrange(date, location) %>%
   group_by(location, date) %>%
   filter(doses_administered == min(doses_administered, na.rm = TRUE)) %>% # to get rid of duplicates for skipped days
   ungroup()
@@ -58,14 +98,14 @@ vaccines <- vaccines_raw %>%
   # set up to get new values
   mutate(date = ymd(date)) %>%
   group_by(state) %>%
-  arrange(state, date) %>%
   mutate(n = row_number()) %>%
+  arrange(state, date)
+
+# get new values
+vaccines <- vaccines %>%
   
   # calculate daily change
-  mutate(doses_distributed = ifelse(skipped %in% "Yes", lag(doses_distributed), doses_distributed),
-         doses_administered = ifelse(skipped %in% "Yes", lag(doses_administered), doses_administered),
-         administered_dose1 = ifelse(skipped %in% "Yes", lag(administered_dose1), administered_dose1),
-         administered_dose2 = ifelse(skipped %in% "Yes", lag(administered_dose2), administered_dose2),
+  mutate(
          
          # hot fix for 2021-01-11
          doses_distributed = ifelse(date  == "2021-01-09", lag(doses_distributed), doses_distributed),
@@ -155,7 +195,8 @@ sheet_write(vaccines, ss = "https://docs.google.com/spreadsheets/d/1ezajFR0idY0i
 vaccines %>% 
   group_by(date) %>% 
   filter(category %in% "United States") %>%
-  summarise(total = sum(doses_administered))
+  summarise(total = sum(doses_administered)) %>%
+  tail()
 
 
 
