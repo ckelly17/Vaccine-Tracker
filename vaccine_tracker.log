@@ -11047,3 +11047,191 @@ Error in curl::curl_fetch_memory(url, handle = handle) :
   Timeout was reached: LibreSSL SSL_read: SSL_ERROR_SYSCALL, errno 60
 Calls: sheet_write ... request_fetch -> request_fetch.write_memory -> <Anonymous>
 Execution halted
+Warning message:
+package 'jsonlite' was built under R version 3.6.2 
+-- Attaching packages --------------------------------------- tidyverse 1.3.0 --
+v ggplot2 3.3.2     v purrr   0.3.4
+v tibble  3.0.4     v dplyr   1.0.2
+v tidyr   1.1.2     v stringr 1.4.0
+v readr   1.3.1     v forcats 0.4.0
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter()  masks stats::filter()
+x purrr::flatten() masks jsonlite::flatten()
+x dplyr::lag()     masks stats::lag()
+Warning messages:
+1: package 'ggplot2' was built under R version 3.6.2 
+2: package 'tibble' was built under R version 3.6.2 
+3: package 'tidyr' was built under R version 3.6.2 
+4: package 'purrr' was built under R version 3.6.2 
+5: package 'dplyr' was built under R version 3.6.2 
+
+Attaching package: 'janitor'
+
+The following objects are masked from 'package:stats':
+
+    chisq.test, fisher.test
+
+Warning message:
+package 'janitor' was built under R version 3.6.2 
+
+Attaching package: 'lubridate'
+
+The following objects are masked from 'package:base':
+
+    date, intersect, setdiff, union
+
+Warning message:
+package 'lubridate' was built under R version 3.6.2 
+Warning message:
+package 'googlesheets4' was built under R version 3.6.2 
+Registered S3 method overwritten by 'openssl':
+  method      from
+  print.bytes Rcpp
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  date = col_date(format = ""),
+  location = col_character(),
+  short_name = col_character(),
+  long_name = col_character(),
+  skipped = col_character()
+)
+See spec(...) for full column specifications.
+`summarise()` ungrouping output (override with `.groups` argument)
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  date = col_date(format = ""),
+  state = col_character()
+)
+See spec(...) for full column specifications.
+`summarise()` ungrouping output (override with `.groups` argument)
+Auto-refreshing stale OAuth token.
+Writing to "vaccine_viz"
+Writing to sheet "vaccines"
+`summarise()` ungrouping output (override with `.groups` argument)
+# A tibble: 6 x 2
+  date          total
+  <date>        <dbl>
+1 2021-01-21 17546374
+2 2021-01-22 19107959
+3 2021-01-23 20537990
+4 2021-01-24 21848655
+5 2021-01-25 22734243
+6 2021-01-26 23540994
+Warning message:
+package 'jsonlite' was built under R version 3.6.2 
+-- Attaching packages --------------------------------------- tidyverse 1.3.0 --
+v ggplot2 3.3.2     v purrr   0.3.4
+v tibble  3.0.4     v dplyr   1.0.2
+v tidyr   1.1.2     v stringr 1.4.0
+v readr   1.3.1     v forcats 0.4.0
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter()  masks stats::filter()
+x purrr::flatten() masks jsonlite::flatten()
+x dplyr::lag()     masks stats::lag()
+Warning messages:
+1: package 'ggplot2' was built under R version 3.6.2 
+2: package 'tibble' was built under R version 3.6.2 
+3: package 'tidyr' was built under R version 3.6.2 
+4: package 'purrr' was built under R version 3.6.2 
+5: package 'dplyr' was built under R version 3.6.2 
+
+Attaching package: 'janitor'
+
+The following objects are masked from 'package:stats':
+
+    chisq.test, fisher.test
+
+Warning message:
+package 'janitor' was built under R version 3.6.2 
+
+Attaching package: 'lubridate'
+
+The following objects are masked from 'package:base':
+
+    date, intersect, setdiff, union
+
+Warning message:
+package 'lubridate' was built under R version 3.6.2 
+Warning message:
+package 'googlesheets4' was built under R version 3.6.2 
+Registered S3 method overwritten by 'openssl':
+  method      from
+  print.bytes Rcpp
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  date = col_date(format = ""),
+  location = col_character(),
+  short_name = col_character(),
+  long_name = col_character(),
+  skipped = col_character()
+)
+See spec(...) for full column specifications.
+`summarise()` ungrouping output (override with `.groups` argument)
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  date = col_date(format = ""),
+  state = col_character()
+)
+See spec(...) for full column specifications.
+`summarise()` ungrouping output (override with `.groups` argument)
+Writing to "vaccine_viz"
+Writing to sheet "vaccines"
+Auto-refreshing stale OAuth token.
+`summarise()` ungrouping output (override with `.groups` argument)
+# A tibble: 6 x 2
+  date          total
+  <date>        <dbl>
+1 2021-01-21 17546374
+2 2021-01-22 19107959
+3 2021-01-23 20537990
+4 2021-01-24 21848655
+5 2021-01-25 22734243
+6 2021-01-26 23540994
+Warning message:
+package 'jsonlite' was built under R version 3.6.2 
+-- Attaching packages --------------------------------------- tidyverse 1.3.0 --
+v ggplot2 3.3.2     v purrr   0.3.4
+v tibble  3.0.4     v dplyr   1.0.2
+v tidyr   1.1.2     v stringr 1.4.0
+v readr   1.3.1     v forcats 0.4.0
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter()  masks stats::filter()
+x purrr::flatten() masks jsonlite::flatten()
+x dplyr::lag()     masks stats::lag()
+Warning messages:
+1: package 'ggplot2' was built under R version 3.6.2 
+2: package 'tibble' was built under R version 3.6.2 
+3: package 'tidyr' was built under R version 3.6.2 
+4: package 'purrr' was built under R version 3.6.2 
+5: package 'dplyr' was built under R version 3.6.2 
+
+Attaching package: 'janitor'
+
+The following objects are masked from 'package:stats':
+
+    chisq.test, fisher.test
+
+Warning message:
+package 'janitor' was built under R version 3.6.2 
+
+Attaching package: 'lubridate'
+
+The following objects are masked from 'package:base':
+
+    date, intersect, setdiff, union
+
+Warning message:
+package 'lubridate' was built under R version 3.6.2 
+Warning message:
+package 'googlesheets4' was built under R version 3.6.2 
+Registered S3 method overwritten by 'openssl':
+  method      from
+  print.bytes Rcpp
+Error in open.connection(con, "rb") : 
+  Timeout was reached: Resolving timed out after 10000 milliseconds
+Calls: %>% ... datasource_connection -> read_connection -> open -> open.connection
+Execution halted
