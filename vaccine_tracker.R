@@ -101,6 +101,10 @@ vaccines <- vaccines_raw %>%
   mutate(n = row_number()) %>%
   arrange(state, date)
 
+## fill in miss values for dose 2 on 1/14
+vaccines <- vaccines %>%
+  mutate(administered_dose2 = ifelse(date == "2021-01-14", lag(administered_dose2), administered_dose2))
+
 # get new values
 vaccines <- vaccines %>%
   
@@ -131,6 +135,8 @@ vaccines <- vaccines %>%
   mutate(unknown_dose = ifelse(date < "2021-01-12", doses_administered, 0))
          #unknown_dose = ifelse(date >= "2021-01-12", doses_administered - administered_dose1 - administered_dose2, unknown_dose))
 
+
+
 ## add US abbr
 vaccines <- vaccines %>%
   group_by(state) %>%
@@ -157,6 +163,12 @@ vaccines <- vaccines %>%
          category = ifelse(state %in% territories, "territory", category),
          category = ifelse(state %in% fed_programs, "federal program", category),
          category = ifelse(state %in% "United States", "United States", category))
+
+## state rank 
+vaccines <- vaccines %>%
+  group_by(category, date) %>%
+  mutate(doses_rank = rank(desc(doses_administered / pop))) %>%
+  ungroup()
 
 ## add new cases from CTP
 ctp <- fromJSON("https://api.covidtracking.com/v1/states/daily.json") %>%
