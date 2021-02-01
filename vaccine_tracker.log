@@ -11544,3 +11544,338 @@ Backtrace:
  5. \-dplyr:::group_by.data.frame(., category, date)
  6.   \-dplyr::group_by_prepare(.data, ..., .add = .add)
 Execution halted
+Warning message:
+package 'jsonlite' was built under R version 3.6.2 
+-- Attaching packages --------------------------------------- tidyverse 1.3.0 --
+v ggplot2 3.3.2     v purrr   0.3.4
+v tibble  3.0.4     v dplyr   1.0.2
+v tidyr   1.1.2     v stringr 1.4.0
+v readr   1.3.1     v forcats 0.4.0
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter()  masks stats::filter()
+x purrr::flatten() masks jsonlite::flatten()
+x dplyr::lag()     masks stats::lag()
+Warning messages:
+1: package 'ggplot2' was built under R version 3.6.2 
+2: package 'tibble' was built under R version 3.6.2 
+3: package 'tidyr' was built under R version 3.6.2 
+4: package 'purrr' was built under R version 3.6.2 
+5: package 'dplyr' was built under R version 3.6.2 
+
+Attaching package: 'janitor'
+
+The following objects are masked from 'package:stats':
+
+    chisq.test, fisher.test
+
+Warning message:
+package 'janitor' was built under R version 3.6.2 
+
+Attaching package: 'lubridate'
+
+The following objects are masked from 'package:base':
+
+    date, intersect, setdiff, union
+
+Warning message:
+package 'lubridate' was built under R version 3.6.2 
+Warning message:
+package 'googlesheets4' was built under R version 3.6.2 
+Registered S3 method overwritten by 'openssl':
+  method      from
+  print.bytes Rcpp
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  date = col_date(format = ""),
+  location = col_character(),
+  short_name = col_character(),
+  long_name = col_character(),
+  skipped = col_character(),
+  administered_dose1_pop_pct = col_logical(),
+  administered_dose2_pop_pct = col_logical()
+)
+See spec(...) for full column specifications.
+Warning: 119 parsing failures.
+ row                        col           expected actual                                                                             file
+1642 administered_dose1_pop_pct 1/0/T/F/TRUE/FALSE  12.55 'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+1642 administered_dose2_pop_pct 1/0/T/F/TRUE/FALSE  3.19  'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+1643 administered_dose1_pop_pct 1/0/T/F/TRUE/FALSE  5.88  'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+1643 administered_dose2_pop_pct 1/0/T/F/TRUE/FALSE  1.1   'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+1644 administered_dose1_pop_pct 1/0/T/F/TRUE/FALSE  7.75  'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+.... .......................... .................. ...... ................................................................................
+See p [... truncated]
+`summarise()` ungrouping output (override with `.groups` argument)
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  date = col_date(format = ""),
+  state = col_character()
+)
+See spec(...) for full column specifications.
+`summarise()` ungrouping output (override with `.groups` argument)
+Writing to "vaccine_viz"
+Writing to sheet "vaccines"
+`summarise()` ungrouping output (override with `.groups` argument)
+# A tibble: 6 x 2
+  date          total
+  <date>        <dbl>
+1 2021-01-26 23540994
+2 2021-01-27 24652634
+3 2021-01-28 26193682
+4 2021-01-29 27884661
+5 2021-01-30 29577902
+6 2021-01-31 31123299
+Warning message:
+package 'jsonlite' was built under R version 3.6.2 
+-- Attaching packages --------------------------------------- tidyverse 1.3.0 --
+v ggplot2 3.3.2     v purrr   0.3.4
+v tibble  3.0.4     v dplyr   1.0.2
+v tidyr   1.1.2     v stringr 1.4.0
+v readr   1.3.1     v forcats 0.4.0
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter()  masks stats::filter()
+x purrr::flatten() masks jsonlite::flatten()
+x dplyr::lag()     masks stats::lag()
+Warning messages:
+1: package 'ggplot2' was built under R version 3.6.2 
+2: package 'tibble' was built under R version 3.6.2 
+3: package 'tidyr' was built under R version 3.6.2 
+4: package 'purrr' was built under R version 3.6.2 
+5: package 'dplyr' was built under R version 3.6.2 
+
+Attaching package: 'janitor'
+
+The following objects are masked from 'package:stats':
+
+    chisq.test, fisher.test
+
+Warning message:
+package 'janitor' was built under R version 3.6.2 
+
+Attaching package: 'lubridate'
+
+The following objects are masked from 'package:base':
+
+    date, intersect, setdiff, union
+
+Warning message:
+package 'lubridate' was built under R version 3.6.2 
+Warning message:
+package 'googlesheets4' was built under R version 3.6.2 
+Registered S3 method overwritten by 'openssl':
+  method      from
+  print.bytes Rcpp
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  date = col_date(format = ""),
+  location = col_character(),
+  short_name = col_character(),
+  long_name = col_character(),
+  skipped = col_character(),
+  administered_dose1_pop_pct = col_logical(),
+  administered_dose2_pop_pct = col_logical()
+)
+See spec(...) for full column specifications.
+Warning: 119 parsing failures.
+ row                        col           expected actual                                                                             file
+1642 administered_dose1_pop_pct 1/0/T/F/TRUE/FALSE  12.55 'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+1642 administered_dose2_pop_pct 1/0/T/F/TRUE/FALSE  3.19  'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+1643 administered_dose1_pop_pct 1/0/T/F/TRUE/FALSE  5.88  'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+1643 administered_dose2_pop_pct 1/0/T/F/TRUE/FALSE  1.1   'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+1644 administered_dose1_pop_pct 1/0/T/F/TRUE/FALSE  7.75  'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+.... .......................... .................. ...... ................................................................................
+See p [... truncated]
+`summarise()` ungrouping output (override with `.groups` argument)
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  date = col_date(format = ""),
+  state = col_character()
+)
+See spec(...) for full column specifications.
+`summarise()` ungrouping output (override with `.groups` argument)
+Auto-refreshing stale OAuth token.
+Writing to "vaccine_viz"
+Writing to sheet "vaccines"
+`summarise()` ungrouping output (override with `.groups` argument)
+# A tibble: 6 x 2
+  date          total
+  <date>        <dbl>
+1 2021-01-26 23540994
+2 2021-01-27 24652634
+3 2021-01-28 26193682
+4 2021-01-29 27884661
+5 2021-01-30 29577902
+6 2021-01-31 31123299
+Warning message:
+package 'jsonlite' was built under R version 3.6.2 
+-- Attaching packages --------------------------------------- tidyverse 1.3.0 --
+v ggplot2 3.3.2     v purrr   0.3.4
+v tibble  3.0.4     v dplyr   1.0.2
+v tidyr   1.1.2     v stringr 1.4.0
+v readr   1.3.1     v forcats 0.4.0
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter()  masks stats::filter()
+x purrr::flatten() masks jsonlite::flatten()
+x dplyr::lag()     masks stats::lag()
+Warning messages:
+1: package 'ggplot2' was built under R version 3.6.2 
+2: package 'tibble' was built under R version 3.6.2 
+3: package 'tidyr' was built under R version 3.6.2 
+4: package 'purrr' was built under R version 3.6.2 
+5: package 'dplyr' was built under R version 3.6.2 
+
+Attaching package: 'janitor'
+
+The following objects are masked from 'package:stats':
+
+    chisq.test, fisher.test
+
+Warning message:
+package 'janitor' was built under R version 3.6.2 
+
+Attaching package: 'lubridate'
+
+The following objects are masked from 'package:base':
+
+    date, intersect, setdiff, union
+
+Warning message:
+package 'lubridate' was built under R version 3.6.2 
+Warning message:
+package 'googlesheets4' was built under R version 3.6.2 
+Registered S3 method overwritten by 'openssl':
+  method      from
+  print.bytes Rcpp
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  date = col_date(format = ""),
+  location = col_character(),
+  short_name = col_character(),
+  long_name = col_character(),
+  skipped = col_character(),
+  administered_dose1_pop_pct = col_logical(),
+  administered_dose2_pop_pct = col_logical()
+)
+See spec(...) for full column specifications.
+Warning: 119 parsing failures.
+ row                        col           expected actual                                                                             file
+1642 administered_dose1_pop_pct 1/0/T/F/TRUE/FALSE  12.55 'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+1642 administered_dose2_pop_pct 1/0/T/F/TRUE/FALSE  3.19  'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+1643 administered_dose1_pop_pct 1/0/T/F/TRUE/FALSE  5.88  'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+1643 administered_dose2_pop_pct 1/0/T/F/TRUE/FALSE  1.1   'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+1644 administered_dose1_pop_pct 1/0/T/F/TRUE/FALSE  7.75  'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+.... .......................... .................. ...... ................................................................................
+See p [... truncated]
+`summarise()` ungrouping output (override with `.groups` argument)
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  date = col_date(format = ""),
+  state = col_character()
+)
+See spec(...) for full column specifications.
+`summarise()` ungrouping output (override with `.groups` argument)
+Auto-refreshing stale OAuth token.
+Error: Client error: (429) RESOURCE_EXHAUSTED
+  * Either out of resource quota or reaching rate limiting. The client should look for google.rpc.QuotaFailure error detail for more information.
+  * Quota exceeded for quota metric 'Read requests' and limit 'Read requests per minute' of service 'sheets.googleapis.com' for consumer 'project_number:603366585132'.
+
+Error details:
+  * Error details of type 'google.rpc.ErrorInfo' are not implemented yet.
+  * Workaround: use `tryCatch()` and inspect error payload yourself.
+  * Please open an issue at https://github.com/r-lib/gargle/issues, so we can fix.
+Backtrace:
+    x
+ 1. \-googlesheets4::sheet_write(...)
+ 2.   \-googlesheets4::gs4_get(ssid)
+ 3.     \-googlesheets4:::gs4_get_impl_(as_sheets_id(ss))
+ 4.       \-gargle::response_process(raw_resp)
+ 5.         \-gargle:::stop_request_failed(error_message(resp), resp)
+Execution halted
+Warning message:
+package 'jsonlite' was built under R version 3.6.2 
+-- Attaching packages --------------------------------------- tidyverse 1.3.0 --
+v ggplot2 3.3.2     v purrr   0.3.4
+v tibble  3.0.4     v dplyr   1.0.2
+v tidyr   1.1.2     v stringr 1.4.0
+v readr   1.3.1     v forcats 0.4.0
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter()  masks stats::filter()
+x purrr::flatten() masks jsonlite::flatten()
+x dplyr::lag()     masks stats::lag()
+Warning messages:
+1: package 'ggplot2' was built under R version 3.6.2 
+2: package 'tibble' was built under R version 3.6.2 
+3: package 'tidyr' was built under R version 3.6.2 
+4: package 'purrr' was built under R version 3.6.2 
+5: package 'dplyr' was built under R version 3.6.2 
+
+Attaching package: 'janitor'
+
+The following objects are masked from 'package:stats':
+
+    chisq.test, fisher.test
+
+Warning message:
+package 'janitor' was built under R version 3.6.2 
+
+Attaching package: 'lubridate'
+
+The following objects are masked from 'package:base':
+
+    date, intersect, setdiff, union
+
+Warning message:
+package 'lubridate' was built under R version 3.6.2 
+Warning message:
+package 'googlesheets4' was built under R version 3.6.2 
+Registered S3 method overwritten by 'openssl':
+  method      from
+  print.bytes Rcpp
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  date = col_date(format = ""),
+  location = col_character(),
+  short_name = col_character(),
+  long_name = col_character(),
+  skipped = col_character(),
+  administered_dose1_pop_pct = col_logical(),
+  administered_dose2_pop_pct = col_logical()
+)
+See spec(...) for full column specifications.
+Warning: 119 parsing failures.
+ row                        col           expected actual                                                                             file
+1642 administered_dose1_pop_pct 1/0/T/F/TRUE/FALSE  12.55 'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+1642 administered_dose2_pop_pct 1/0/T/F/TRUE/FALSE  3.19  'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+1643 administered_dose1_pop_pct 1/0/T/F/TRUE/FALSE  5.88  'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+1643 administered_dose2_pop_pct 1/0/T/F/TRUE/FALSE  1.1   'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+1644 administered_dose1_pop_pct 1/0/T/F/TRUE/FALSE  7.75  'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+.... .......................... .................. ...... ................................................................................
+See p [... truncated]
+`summarise()` ungrouping output (override with `.groups` argument)
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  date = col_date(format = ""),
+  state = col_character()
+)
+See spec(...) for full column specifications.
+`summarise()` ungrouping output (override with `.groups` argument)
+Auto-refreshing stale OAuth token.
+Writing to "vaccine_viz"
+Writing to sheet "vaccines"
+`summarise()` ungrouping output (override with `.groups` argument)
+# A tibble: 6 x 2
+  date          total
+  <date>        <dbl>
+1 2021-01-26 23540994
+2 2021-01-27 24652634
+3 2021-01-28 26193682
+4 2021-01-29 27884661
+5 2021-01-30 29577902
+6 2021-01-31 31123299
