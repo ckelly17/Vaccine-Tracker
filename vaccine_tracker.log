@@ -12115,3 +12115,15 @@ cols(
 )
 See spec(...) for full column specifications.
 `summarise()` ungrouping output (override with `.groups` argument)
+Writing to "vaccine_viz"
+Writing to sheet "vaccines"
+`summarise()` ungrouping output (override with `.groups` argument)
+# A tibble: 6 x 2
+  date          total
+  <date>        <dbl>
+1 2021-01-28 26193682
+2 2021-01-29 27884661
+3 2021-01-30 29577902
+4 2021-01-31 31123299
+5 2021-02-01 32222402
+6 2021-02-02 32780860
