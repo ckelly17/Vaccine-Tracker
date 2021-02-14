@@ -20,6 +20,11 @@ old_data <- read_csv("https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker
 ## get new data
 return <- fromJSON("https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxData?id=vaccination_data")
 
+history <- read_csv("https://raw.githubusercontent.com/COVID19Tracking/covid-tracking-data/master/data/cdc_vaccinations_timeseries_daily.csv") %>%
+  clean_names() %>%
+  filter(date >= "2021-02-12") %>%
+  mutate(date = as.character(date))
+
 new_data <- return[[2]] %>%
   clean_names() %>%
   mutate(date = as.character(ymd(date))) %>%
