@@ -208,6 +208,45 @@ vaccines <- left_join(vaccines, youyang, by = c("state_abb", "date"))
 write_csv(vaccines, "vaccine_viz.csv")
 sheet_write(vaccines, ss = "https://docs.google.com/spreadsheets/d/1ezajFR0idY0ifWumhn0J8G0UzCl_qF__5D7mwgR4PD8/edit#gid=0", sheet = "vaccines")
 
+
+##### AGES
+
+json <- fromJSON("https://raw.githubusercontent.com/COVID19Tracking/covid-tracking-data/master/data/cdc_vaccinations_demographics.json")
+vax_demo <- json[[2]] %>%
+  clean_names()
+
+ages <- vax_demo %>%
+  select(administered_dose1, administered_dose2, date, demographic_category) %>%
+  filter(demographic_category %in% c("Ages_<18yrs",
+                                     "Ages_18-29_yrs",
+                                     "Ages_30-39_yrs",
+                                     "Ages_40-49_yrs",
+                                     "Ages_50-64_yrs",
+                                     "Ages_65-74_yrs",
+                                     "Ages_75+_yrs")) %>%
+  
+  rename(age_group = demographic_category) %>%
+  
+  mutate(age_group_pop = ifelse(age_group %in% "Ages_<18yrs", 81625416, NA),
+         age_group_pop = ifelse(age_group %in% "Ages_18-29_yrs", 45141956, age_group_pop),
+         age_group_pop = ifelse(age_group %in% "Ages_30-39_yrs", 44168826, age_group_pop),
+         age_group_pop = ifelse(age_group %in% "Ages_40-49_yrs", 40319374, age_group_pop),
+         age_group_pop = ifelse(age_group %in% "Ages_50-64_yrs", 62925688, age_group_pop),
+         age_group_pop = ifelse(age_group %in% "Ages_65-74_yrs", 31483433, age_group_pop),
+         age_group_pop = ifelse(age_group %in% "Ages_75+_yrs", 22574830, age_group_pop),
+ 
+         pct_vax1 = administered_dose1 / age_group_pop,
+         pct_vax2 = administered_dose2 / age_group_pop)
+
+pct_known <- vax_demo %>%
+  filter(demographic_category %in% "Age_known")
+pct_known <- max(pct_known$administered_dose1_pct_us)
+
+ages$pct_known <- pct_known
+
+sheet_write(ages, ss = "https://docs.google.com/spreadsheets/d/1ezajFR0idY0ifWumhn0J8G0UzCl_qF__5D7mwgR4PD8/edit#gid=0", sheet = "ages")
+
+
 # by date
 vaccines %>% 
   group_by(date) %>% 
