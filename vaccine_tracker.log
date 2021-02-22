@@ -13958,3 +13958,108 @@ Writing to sheet "ages"
 4 2021-02-18 57737767
 5 2021-02-19 59585043
 6 2021-02-20 61289500
+Warning message:
+package 'jsonlite' was built under R version 3.6.2 
+-- Attaching packages --------------------------------------- tidyverse 1.3.0 --
+v ggplot2 3.3.2     v purrr   0.3.4
+v tibble  3.0.4     v dplyr   1.0.2
+v tidyr   1.1.2     v stringr 1.4.0
+v readr   1.3.1     v forcats 0.4.0
+-- Conflicts ------------------------------------------ tidyverse_conflicts() --
+x dplyr::filter()  masks stats::filter()
+x purrr::flatten() masks jsonlite::flatten()
+x dplyr::lag()     masks stats::lag()
+Warning messages:
+1: package 'ggplot2' was built under R version 3.6.2 
+2: package 'tibble' was built under R version 3.6.2 
+3: package 'tidyr' was built under R version 3.6.2 
+4: package 'purrr' was built under R version 3.6.2 
+5: package 'dplyr' was built under R version 3.6.2 
+
+Attaching package: 'janitor'
+
+The following objects are masked from 'package:stats':
+
+    chisq.test, fisher.test
+
+Warning message:
+package 'janitor' was built under R version 3.6.2 
+
+Attaching package: 'lubridate'
+
+The following objects are masked from 'package:base':
+
+    date, intersect, setdiff, union
+
+Warning message:
+package 'lubridate' was built under R version 3.6.2 
+Warning message:
+package 'googlesheets4' was built under R version 3.6.2 
+Registered S3 method overwritten by 'openssl':
+  method      from
+  print.bytes Rcpp
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  date = col_date(format = ""),
+  location = col_character(),
+  short_name = col_character(),
+  long_name = col_character(),
+  skipped = col_character(),
+  administered_dose1_pop_pct = col_logical(),
+  administered_dose2_pop_pct = col_logical(),
+  runid = col_logical()
+)
+See spec(...) for full column specifications.
+Warning: 122 parsing failures.
+ row                        col           expected actual                                                                             file
+3072 administered_dose1_pop_pct 1/0/T/F/TRUE/FALSE   20.9 'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+3072 administered_dose2_pop_pct 1/0/T/F/TRUE/FALSE   11.2 'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+3073 administered_dose1_pop_pct 1/0/T/F/TRUE/FALSE   11.8 'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+3073 administered_dose2_pop_pct 1/0/T/F/TRUE/FALSE   4.6  'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+3074 administered_dose1_pop_pct 1/0/T/F/TRUE/FALSE   12.2 'https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv'
+.... .......................... .................. ...... ................................................................................
+See p [... truncated]
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  Date = col_date(format = ""),
+  Location = col_character(),
+  ShortName = col_character(),
+  LongName = col_character(),
+  MMWR_week = col_logical(),
+  Ratio_Admin_Dist = col_logical(),
+  Administered_Dose_Other = col_logical(),
+  Administered_Dose_Other_Per_100K = col_logical()
+)
+See spec(...) for full column specifications.
+Warning: 502 parsing failures.
+ row                              col           expected actual                                                                                                                      file
+2341 MMWR_week                        1/0/T/F/TRUE/FALSE  2     'https://raw.githubusercontent.com/COVID19Tracking/covid-tracking-data/master/data/cdc_vaccinations_timeseries_daily.csv'
+2341 Ratio_Admin_Dist                 1/0/T/F/TRUE/FALSE  0.253 'https://raw.githubusercontent.com/COVID19Tracking/covid-tracking-data/master/data/cdc_vaccinations_timeseries_daily.csv'
+2341 Administered_Dose_Other          1/0/T/F/TRUE/FALSE  7952  'https://raw.githubusercontent.com/COVID19Tracking/covid-tracking-data/master/data/cdc_vaccinations_timeseries_daily.csv'
+2341 Administered_Dose_Other_Per_100K 1/0/T/F/TRUE/FALSE  1087  'https://raw.githubusercontent.com/COVID19Tracking/covid-tracking-data/master/data/cdc_vaccinations_timeseries_daily.csv'
+2342 MMWR_week                        1/0/T/F/TR [... truncated]
+`summarise()` ungrouping output (override with `.groups` argument)
+Parsed with column specification:
+cols(
+  .default = col_double(),
+  date = col_date(format = ""),
+  state = col_character()
+)
+See spec(...) for full column specifications.
+`summarise()` ungrouping output (override with `.groups` argument)
+Writing to "vaccine_viz"
+Writing to sheet "vaccines"
+Writing to "vaccine_viz"
+Writing to sheet "ages"
+`summarise()` ungrouping output (override with `.groups` argument)
+# A tibble: 6 x 2
+  date          total
+  <date>        <dbl>
+1 2021-02-17 56281827
+2 2021-02-18 57737767
+3 2021-02-19 59585043
+4 2021-02-20 61289500
+5 2021-02-21 63090634
+6 2021-02-22 64177474
