@@ -175,35 +175,6 @@ vaccines <- vaccines %>%
   mutate(doses_rank = rank(desc(doses_administered / pop))) %>%
   ungroup()
 
-## add new cases from CTP
-ctp <- fromJSON("https://api.covidtracking.com/v1/states/daily.json") %>%
-  select(state_abb = state, date, new_reported_cases = positiveIncrease) %>%
-  mutate(date = ymd(date))
-
-nat_ctp <- ctp %>%
-  group_by(date) %>%
-  summarize(new_reported_cases =sum(new_reported_cases, na.rm = TRUE)) %>%
-  mutate(state_abb = "US")
-
-ctp <- bind_rows(ctp, nat_ctp)
-
-vaccines <- left_join(vaccines, ctp, by = c("state_abb", "date"))
-
-## add estimate for new infections from covid-19 projections
-youyang <- read_csv("https://raw.githubusercontent.com/youyanggu/covid19_projections/master/infection_estimates/latest_all_estimates_states.csv") %>%
-  select(state_abb = state, date, new_infected_est = new_infected_mean) %>%
-  mutate(date = ymd(date) + 15,
-         new_infected_est = as.integer(new_infected_est))
-
-nat_youyang <- youyang %>%
-  group_by(date) %>%
-  summarize(new_infected_est =sum(new_infected_est, na.rm = TRUE)) %>%
-  mutate(state_abb = "US")
-
-youyang <- bind_rows(youyang, nat_youyang)
-
-vaccines <- left_join(vaccines, youyang, by = c("state_abb", "date"))
-
 # export  
 write_csv(vaccines, "vaccine_viz.csv")
 sheet_write(vaccines, ss = "https://docs.google.com/spreadsheets/d/1ezajFR0idY0ifWumhn0J8G0UzCl_qF__5D7mwgR4PD8/edit#gid=0", sheet = "vaccines")
