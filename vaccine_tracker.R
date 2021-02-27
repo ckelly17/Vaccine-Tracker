@@ -5,10 +5,6 @@ library(lubridate)
 library(googlesheets4)
 
 setwd("/Users/conorkelly/Documents/Vaccine-Tracker")
-#setwd("C:/Users/ckelly/Documents/Covid-Personal - Copy/Vaccine Tracker/Vaccine-Tracker")
-
-# google credentials
-gs4_auth(email = "conor.richard.kelly@gmail.com")
 
 ## import existing data cached from previous day
 old_data <- read_csv("https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv") %>%
@@ -177,8 +173,6 @@ vaccines <- vaccines %>%
 
 # export  
 write_csv(vaccines, "vaccine_viz.csv")
-sheet_write(vaccines, ss = "https://docs.google.com/spreadsheets/d/1ezajFR0idY0ifWumhn0J8G0UzCl_qF__5D7mwgR4PD8/edit#gid=0", sheet = "vaccines")
-
 
 ##### AGES
 
@@ -215,7 +209,7 @@ pct_known <- max(pct_known$administered_dose1_pct_us)
 
 ages$pct_known <- pct_known
 
-sheet_write(ages, ss = "https://docs.google.com/spreadsheets/d/1ezajFR0idY0ifWumhn0J8G0UzCl_qF__5D7mwgR4PD8/edit#gid=0", sheet = "ages")
+write_csv(ages, "ages_viz.csv")
 
 
 # by date
