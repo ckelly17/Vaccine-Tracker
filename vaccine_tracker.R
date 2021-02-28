@@ -13,6 +13,12 @@ old_data <- read_csv("https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker
          skip_n = 0) %>%
   filter(!is.na(date))
 
+missed <- fromJSON("https://raw.githubusercontent.com/COVID19Tracking/covid-tracking-data/4b9b5d18f47e6942ba458f13ce098e887ad7039f/data/cdc_vaccinations.json")
+missed <- missed[[2]] %>%
+  clean_names()
+
+old_data <- bind_rows(old_data, missed)
+
 ## get new data
 return <- fromJSON("https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxData?id=vaccination_data")
 
