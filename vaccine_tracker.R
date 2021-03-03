@@ -117,8 +117,8 @@ vaccines <- vaccines %>%
          doses_administered = ifelse(date  == "2021-01-10", lag(doses_administered), doses_administered),
         
          # all doses
-         new_dist = ifelse(n >= 2, doses_distributed - lag(doses_distributed, 1), doses_distributed),
-         new_admin = ifelse(n >= 2, doses_administered - lag(doses_administered, 1), doses_administered),
+         new_dist = ifelse(n >= 2, doses_distributed - lag(doses_distributed, 1), 0),
+         new_admin = ifelse(n >= 2, doses_administered - lag(doses_administered, 1), 0),
          
          # dose 1 and 2
          new_dose1 = ifelse(n >= 2, administered_dose1 - lag(administered_dose1, 1), 0),
