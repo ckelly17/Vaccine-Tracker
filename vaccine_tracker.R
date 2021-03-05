@@ -120,6 +120,9 @@ vaccines <- vaccines %>%
          new_dist = ifelse(n >= 2, doses_distributed - lag(doses_distributed, 1), 0),
          new_admin = ifelse(n >= 2, doses_administered - lag(doses_administered, 1), 0),
          
+         new_dist_all = ifelse(n >= 2, doses_distributed - lag(doses_distributed, 1), doses_distributed),
+         new_admin_all = ifelse(n >= 2, doses_administered - lag(doses_administered, 1), doses_administered),
+         
          # dose 1 and 2
          new_dose1 = ifelse(n >= 2, administered_dose1 - lag(administered_dose1, 1), 0),
          new_dose2 = ifelse(n >= 2, administered_dose2 - lag(administered_dose2, 1), 0)) %>%
