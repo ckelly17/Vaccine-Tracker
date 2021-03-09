@@ -166,6 +166,11 @@ vaccines <- vaccines %>%
          category = ifelse(state %in% fed_programs, "federal program", category),
          category = ifelse(state %in% "United States", "United States", category))
 
+sum(!is.na(vaccines$census2019_18plus_pop))
+vaccines %>% 
+  filter(!is.na(census2019_18plus_pop)) %>% 
+  group_by(state) %>% 
+  summarize(pop18 = max(census2019_18plus_pop, na.rm = TRUE))
 
 
 ## fill population over 18
