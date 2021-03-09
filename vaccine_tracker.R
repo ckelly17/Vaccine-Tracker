@@ -172,6 +172,12 @@ vaccines %>%
   group_by(state) %>% 
   summarize(pop18 = max(census2019_18plus_pop, na.rm = TRUE))
 
+pop18 <- read_csv("https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/daily_backup/2021-03-07.csv") %>%
+  group_by(location) %>%
+  summarize(pop18 = max(census2019_18plus_pop, na.rm = TRUE)) %>%
+  rename(state_abb = location)
+
+vaccines <- left_join(vaccines, pop18, by = "state_abb")
 
 ## fill population over 18
 vaccines <- vaccines %>%
@@ -182,7 +188,7 @@ vaccines <- vaccines %>%
 ## state rank 
 vaccines <- vaccines %>%
   group_by(category, date) %>%
-  mutate(doses_rank = rank(desc(doses_administered / census2019_18plus_pop))) %>%
+  mutate(doses_rank = rank(desc(doses_administered / pop18))) %>%
   ungroup()
 
 # export  
