@@ -172,12 +172,30 @@ vaccines %>%
   group_by(state) %>% 
   summarize(pop18 = max(census2019_18plus_pop, na.rm = TRUE))
 
+# fix pop over 18
 pop18 <- read_csv("https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/daily_backup/2021-03-07.csv") %>%
   group_by(location) %>%
   summarize(pop18 = max(census2019_18plus_pop, na.rm = TRUE)) %>%
   rename(state_abb = location)
 
 vaccines <- left_join(vaccines, pop18, by = "state_abb")
+
+# hot fix for March 8
+march8 <- read_csv("https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/daily_backup/2021-03-08.csv") %>%
+  mutate(date = ymd(date),
+         series_complete_18plus = as.numeric(series_complete_18plus)) %>%
+  rename(state_abb = location) %>%
+  select(state_abb, date, series_complete_18plus) %>%
+  rename(series_complete_march8 = series_complete_18plus)
+
+check <- inner_join(vaccines, march8, by = c("state_abb", "date"))
+
+vaccines <- left_join(vaccines, march8, by = c("state_abb", "date"))
+
+march8_check <- vaccines %>%
+  filter(date == "2021-03-08") %>%
+  filter(state_abb %in% "US") %>%
+  select(series_complete_18plus, administered_dose2, administered_dose2_recip, everything())
 
 ## fill population over 18
 vaccines <- vaccines %>%
@@ -230,6 +248,11 @@ pct_known <- max(pct_known$administered_dose1_pct_us)
 ages$pct_known <- pct_known
 
 write_csv(ages, "ages_viz.csv")
+
+us_mar8 <- vaccines %>%
+  filter(date %in% "2021-03-08") %>%
+  filter(state_abb %in% "US") %>%
+  select(administered_dose2, administered_dose2_recip, everything())
 
 
 # by date
