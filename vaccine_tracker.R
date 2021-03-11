@@ -88,10 +88,14 @@ vaccines_raw <- bind_rows(temp, new_data) %>%
   filter(doses_administered == min(doses_administered, na.rm = TRUE)) %>% # to get rid of duplicates for skipped days
   ungroup()
 
+## replace series complete as 0 so it stays numeric
+vaccines_raw <- vaccines_raw %>%
+  mutate(series_complete_18plus = ifelse(is.na(series_complete_18plus), 0, series_complete_18plus))
+
 ## write to main repo
 write_csv(vaccines_raw, "vaccine_db.csv")
 
-us_only <- vaccines %>% filter(state %in% "United States") %>% 
+us_only <- vaccines_raw %>% filter(long_name %in% "United States") %>% 
   select(series_complete_18plus, everything())
 
 
