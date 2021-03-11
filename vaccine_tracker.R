@@ -13,6 +13,9 @@ old_data <- read_csv("https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker
          skip_n = 0) %>%
   filter(!is.na(date))
 
+us_only <- old_data %>% filter(long_name %in% "United States") %>% 
+  select(series_complete_18plus, everything())
+
 ## get new data
 return <- fromJSON("https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxData?id=vaccination_data")
 
@@ -88,6 +91,11 @@ vaccines_raw <- bind_rows(temp, new_data) %>%
 ## write to main repo
 write_csv(vaccines_raw, "vaccine_db.csv")
 
+us_only <- vaccines %>% filter(state %in% "United States") %>% 
+  select(series_complete_18plus, everything())
+
+
+
 ## clean for viz
 vaccines <- vaccines_raw %>%
   rename(state_abb = location,
@@ -136,8 +144,6 @@ vaccines <- vaccines %>%
 vaccines <- vaccines %>%
   mutate(unknown_dose = ifelse(date < "2021-01-12", doses_administered, 0))
          #unknown_dose = ifelse(date >= "2021-01-12", doses_administered - administered_dose1 - administered_dose2, unknown_dose))
-
-
 
 ## add US abbr
 vaccines <- vaccines %>%
@@ -188,12 +194,28 @@ march8 <- read_csv("https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/m
   select(state_abb, date, series_complete_18plus) %>%
   rename(series_complete_march8 = series_complete_18plus)
 
-check <- inner_join(vaccines, march8, by = c("state_abb", "date"))
+# hot fix for March 9
+march9 <- read_csv("https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/daily_backup/2021-03-09.csv") %>%
+  mutate(date = ymd(date),
+         series_complete_18plus = as.numeric(series_complete_18plus)) %>%
+  rename(state_abb = location) %>%
+  select(state_abb, date, series_complete_18plus) %>%
+  rename(series_complete_march9 = series_complete_18plus)
+
+check8 <- inner_join(vaccines, march8, by = c("state_abb", "date"))
+check9 <- inner_join(vaccines, march9, by = c("state_abb", "date"))
 
 vaccines <- left_join(vaccines, march8, by = c("state_abb", "date"))
+vaccines <- left_join(vaccines, march9, by = c("state_abb", "date"))
+
 
 march8_check <- vaccines %>%
   filter(date == "2021-03-08") %>%
+  filter(state_abb %in% "US") %>%
+  select(series_complete_18plus, administered_dose2, administered_dose2_recip, everything())
+
+march9_check <- vaccines %>%
+  filter(date == "2021-03-09") %>%
   filter(state_abb %in% "US") %>%
   select(series_complete_18plus, administered_dose2, administered_dose2_recip, everything())
 
@@ -249,11 +271,8 @@ ages$pct_known <- pct_known
 
 write_csv(ages, "ages_viz.csv")
 
-us_mar8 <- vaccines %>%
-  filter(date %in% "2021-03-08") %>%
-  filter(state_abb %in% "US") %>%
-  select(administered_dose2, administered_dose2_recip, everything())
-
+us_only <- vaccines %>% filter(state %in% "United States") %>% 
+  select(series_complete_18plus, everything())
 
 # by date
 vaccines %>% 
@@ -261,6 +280,3 @@ vaccines %>%
   filter(category %in% "United States") %>%
   summarise(total = sum(doses_administered)) %>%
   tail()
-
-
-
