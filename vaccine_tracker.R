@@ -146,8 +146,7 @@ vaccines <- vaccines %>%
 
 ## adding in dose 1/2 etc. on 1/12
 vaccines <- vaccines %>%
-  mutate(unknown_dose = ifelse(date < "2021-01-12", doses_administered, 0))
-         #unknown_dose = ifelse(date >= "2021-01-12", doses_administered - administered_dose1 - administered_dose2, unknown_dose))
+ mutate(unknown_dose = ifelse(date < "2021-01-12", doses_administered, 0))
 
 ## add US abbr
 vaccines <- vaccines %>%
