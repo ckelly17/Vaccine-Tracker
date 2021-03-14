@@ -1,2 +1,2 @@
 # Vaccine-Tracker
-Pulling CDC data on state vaccination progress. `vaccine_tracker.R` pulls a snapshot of vaccination data from the CDC's website and adds it to a local database of historical vaccination data. It also exports to Google Sheets where a Tableau Public dashboard is updated daily.
+Pulling CDC data on state vaccination progress. `vaccine_tracker.R` pulls a snapshot of vaccination data from the CDC's website and adds it to a local database of historical vaccination data from which a Tableau Public dashboard is updated daily.
