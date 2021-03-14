@@ -274,9 +274,6 @@ ages$pct_known <- pct_known
 
 write_csv(ages, "ages_viz.csv")
 
-cali <- vaccines %>% filter(state %in% "California") %>% 
-  select(series_complete_18plus, everything())
-
 # by date
 vaccines %>% 
   group_by(date) %>% 
