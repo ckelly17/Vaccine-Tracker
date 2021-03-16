@@ -136,6 +136,9 @@ vaccines <- vaccines %>%
          new_admin_all = ifelse(n >= 2, doses_administered - lag(doses_administered, 1), doses_administered),
          
          # dose 1 and 2
+         administered_dose1 = ifelse(is.na(administered_dose1), administered_dose1_recip, administered_dose1),
+         administered_dose2 = ifelse(is.na(administered_dose2), administered_dose2_recip, administered_dose2),
+         
          new_dose1 = ifelse(n >= 2, administered_dose1 - lag(administered_dose1, 1), 0),
          new_dose2 = ifelse(n >= 2, administered_dose2 - lag(administered_dose2, 1), 0)) %>%
   
