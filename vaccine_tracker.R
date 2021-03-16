@@ -90,7 +90,9 @@ vaccines_raw <- bind_rows(temp, new_data) %>%
 
 ## replace series complete as 0 so it stays numeric
 vaccines_raw <- vaccines_raw %>%
-  mutate(series_complete_18plus = ifelse(is.na(series_complete_18plus), 0, series_complete_18plus))
+  mutate(series_complete_18plus = ifelse(is.na(series_complete_18plus), 0, series_complete_18plus)) %>%
+  mutate(series_complete_yes = ifelse(is.na(series_complete_yes), 0, series_complete_yes)) %>%
+  mutate(administered_dose1_recip = ifelse(is.na(administered_dose1_recip), 0, administered_dose1_recip))
 
 ## write to main repo
 write_csv(vaccines_raw, "vaccine_db.csv")
