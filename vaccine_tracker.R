@@ -249,7 +249,8 @@ vax_demo <- json[[2]] %>%
   clean_names()
 
 ages <- vax_demo %>%
-  select(administered_dose1, administered_dose2, date, demographic_category) %>%
+  select(administered_dose1, administered_dose2, date, demographic_category,
+         series_complete_yes) %>%
   filter(demographic_category %in% c("Ages_<18yrs",
                                      "Ages_18-29_yrs",
                                      "Ages_30-39_yrs",
@@ -269,7 +270,7 @@ ages <- vax_demo %>%
          age_group_pop = ifelse(age_group %in% "Ages_75+_yrs", 22574830, age_group_pop),
  
          pct_vax1 = administered_dose1 / age_group_pop,
-         pct_vax2 = administered_dose2 / age_group_pop)
+         pct_vax2 = series_complete_yes / age_group_pop)
 
 pct_known <- vax_demo %>%
   filter(demographic_category %in% "Age_known")
