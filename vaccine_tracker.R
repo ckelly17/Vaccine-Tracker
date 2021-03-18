@@ -118,6 +118,11 @@ vaccines <- vaccines_raw %>%
 vaccines <- vaccines %>%
   mutate(administered_dose2 = ifelse(date == "2021-01-14", lag(administered_dose2), administered_dose2))
 
+## fix March 13 total administered
+vaccines <- vaccines %>%
+  mutate(doses_administered = ifelse(state %in% "United States" & date == "2021-03-13", 
+                                     104048005, doses_administered))
+
 # get new values
 vaccines <- vaccines %>%
   
@@ -238,6 +243,7 @@ vaccines <- vaccines %>%
   group_by(category, date) %>%
   mutate(doses_rank = rank(desc(doses_administered / pop18))) %>%
   ungroup()
+
 
 # export  
 write_csv(vaccines, "vaccine_viz.csv")
