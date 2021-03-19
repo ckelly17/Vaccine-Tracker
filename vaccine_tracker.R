@@ -92,7 +92,10 @@ vaccines_raw <- bind_rows(temp, new_data) %>%
 vaccines_raw <- vaccines_raw %>%
   mutate(series_complete_18plus = ifelse(is.na(series_complete_18plus), 0, series_complete_18plus)) %>%
   mutate(series_complete_yes = ifelse(is.na(series_complete_yes), 0, series_complete_yes)) %>%
-  mutate(administered_dose1_recip = ifelse(is.na(administered_dose1_recip), 0, administered_dose1_recip))
+  mutate(administered_dose1_recip = ifelse(is.na(administered_dose1_recip), 0, administered_dose1_recip)) %>%
+  mutate(series_complete_65plus = ifelse(is.na(series_complete_65plus), 0, series_complete_65plus)) %>%
+  mutate(series_complete_65plus_pop_pct = ifelse(is.na(series_complete_65plus_pop_pct), 0, series_complete_65plus_pop_pct)) %>%
+  mutate(series_complete_18plus_pop_pct = ifelse(is.na(series_complete_18plus_pop_pct), 0, series_complete_18plus_pop_pct))
 
 ## write to main repo
 write_csv(vaccines_raw, "vaccine_db.csv")
