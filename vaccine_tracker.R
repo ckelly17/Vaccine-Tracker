@@ -247,6 +247,9 @@ vaccines <- vaccines %>%
   mutate(doses_rank = rank(desc(doses_administered / pop18))) %>%
   ungroup()
 
+## check US
+us <- vaccines %>%
+  filter(state_abb %in% "US")
 
 # export  
 write_csv(vaccines, "vaccine_viz.csv")
@@ -295,3 +298,6 @@ vaccines %>%
   filter(category %in% "United States") %>%
   summarise(total = sum(doses_administered)) %>%
   tail()
+
+nrow(vaccines %>% distinct(state, date)) / nrow(vaccines)
+
