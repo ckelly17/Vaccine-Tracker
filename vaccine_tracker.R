@@ -103,8 +103,6 @@ write_csv(vaccines_raw, "vaccine_db.csv")
 us_only <- vaccines_raw %>% filter(long_name %in% "United States") %>% 
   select(series_complete_18plus, everything())
 
-
-
 ## clean for viz
 vaccines <- vaccines_raw %>%
   rename(state_abb = location,
@@ -244,7 +242,11 @@ vaccines <- vaccines %>%
 ## state rank 
 vaccines <- vaccines %>%
   group_by(category, date) %>%
-  mutate(doses_rank = rank(desc(doses_administered / pop18))) %>%
+  mutate(doses_rank = rank(desc(doses_administered / pop18)),
+         complete_18_rank = rank(desc(series_complete_18plus_pop_pct)),
+         complete_65_rank = rank(desc(series_complete_65plus_pop_pct)),
+         dose1_18_rank = rank(desc(administered_dose1_recip_18plus_pop_pct)),
+         dose1_65_rank = rank(desc(administered_dose1_recip_65plus_pop_pct))) %>%
   ungroup()
 
 ## check US
