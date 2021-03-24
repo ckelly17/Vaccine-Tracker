@@ -6,12 +6,18 @@ library(googlesheets4)
 
 setwd("/Users/conorkelly/Documents/Vaccine-Tracker")
 
+url <- "https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/404e6f94e3f6bc4f2e6921b0ac637339390453e0/vaccine_db.csv"
+
+#"https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv"
 ## import existing data cached from previous day
-old_data <- read_csv("https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv") %>%
+old_data <- read_csv(url,
+                     col_types = cols(
+                       Administered_Dose1 = "d",
+                       Administered_Dose1 = "d")) %>%
   mutate(date = as.character(date),
          skipped = "No",
          skip_n = 0) %>%
-  filter(!is.na(date))
+  filter(!is.na(date)) 
 
 us_only <- old_data %>% filter(long_name %in% "United States") %>% 
   select(series_complete_18plus, everything())
@@ -114,8 +120,9 @@ vaccines <- vaccines_raw %>%
   # set up to get new values
   mutate(date = ymd(date)) %>%
   group_by(state) %>%
-  mutate(n = row_number()) %>%
-  arrange(state, date)
+  arrange(state, date) %>%
+  mutate(n = row_number())
+
 
 ## fill in miss values for dose 2 on 1/14
 vaccines <- vaccines %>%
@@ -248,11 +255,15 @@ vaccines <- vaccines %>%
          complete_65_rank = rank(desc(series_complete_65plus_pop_pct)),
          dose1_18_rank = rank(desc(administered_dose1_recip_18plus_pop_pct)),
          dose1_65_rank = rank(desc(administered_dose1_recip_65plus_pop_pct))) %>%
-  
-  # fix one missing day for 65+
-  # mutate(administered_dose1_recip_65plus_pop_pct = ifelse(is.na(administered_dose1_recip_65plus_pop_pct),
-  #                                                         lag(administered_dose1_recip_65plus_pop_pct, n = 1),
-  #                                                         administered_dose1_recip_65plus_pop_pct)) %>%
+  ungroup
+
+# fix one missing day for 65+
+vaccines <- vaccines %>%
+  group_by(state) %>%
+  arrange(state, date) %>%
+  mutate(series_complete_65plus_pop_pct = ifelse(is.na(series_complete_65plus_pop_pct),
+                                                          lag(series_complete_65plus_pop_pct),
+                                                 series_complete_65plus_pop_pct)) %>%
   ungroup()
 
 ## check US
@@ -309,3 +320,9 @@ vaccines %>%
 
 nrow(vaccines %>% distinct(state, date)) / nrow(vaccines)
 
+us <- vaccines %>%
+  filter(state_abb %in% "US") %>%
+  select(date, series_complete_65plus_pop_pct, new_admin, doses_administered)
+  
+  
+  
