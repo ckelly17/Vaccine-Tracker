@@ -247,6 +247,11 @@ vaccines <- vaccines %>%
          complete_65_rank = rank(desc(series_complete_65plus_pop_pct)),
          dose1_18_rank = rank(desc(administered_dose1_recip_18plus_pop_pct)),
          dose1_65_rank = rank(desc(administered_dose1_recip_65plus_pop_pct))) %>%
+  
+  # fix one missing day for 65+
+  mutate(administered_dose1_recip_65plus_pop_pct = ifelse(is.na(administered_dose1_recip_65plus_pop_pct),
+                                                          lag(administered_dose1_recip_65plus_pop_pct, n = 1),
+                                                          administered_dose1_recip_65plus_pop_pct)) %>%
   ungroup()
 
 ## check US
