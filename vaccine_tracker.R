@@ -84,17 +84,17 @@ temp <- old_data %>%
   mutate(date = ymd(date)) %>%
   bind_rows(n1, n2, n3) %>%
   filter(date < date_cutoff) %>%
-  arrange(desc(date)) %>%
+  #arrange(desc(date)) %>%
   mutate(date = as.character(date))
   
 # bind to old
-vaccines_raw <- bind_rows(new_data, temp) %>%
+vaccines_raw <- bind_rows(temp, new_data) %>%
   distinct(date, location, .keep_all = TRUE) %>%
   arrange(date, location) %>%
   group_by(location, date) %>%
   filter(doses_administered == min(doses_administered, na.rm = TRUE)) %>% # to get rid of duplicates for skipped days
   ungroup() %>%
-  arrange(desc(date))
+  #arrange(desc(date))
 
 ## replace series complete as 0 so it stays numeric
 # vaccines_raw <- vaccines_raw %>%
