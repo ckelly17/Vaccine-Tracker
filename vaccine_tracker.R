@@ -224,7 +224,6 @@ check9 <- inner_join(vaccines, march9, by = c("state_abb", "date"))
 vaccines <- left_join(vaccines, march8, by = c("state_abb", "date"))
 vaccines <- left_join(vaccines, march9, by = c("state_abb", "date"))
 
-
 march8_check <- vaccines %>%
   filter(date == "2021-03-08") %>%
   filter(state_abb %in% "US") %>%
@@ -251,9 +250,9 @@ vaccines <- vaccines %>%
          dose1_65_rank = rank(desc(administered_dose1_recip_65plus_pop_pct))) %>%
   
   # fix one missing day for 65+
-  mutate(administered_dose1_recip_65plus_pop_pct = ifelse(is.na(administered_dose1_recip_65plus_pop_pct),
-                                                          lag(administered_dose1_recip_65plus_pop_pct, n = 1),
-                                                          administered_dose1_recip_65plus_pop_pct)) %>%
+  # mutate(administered_dose1_recip_65plus_pop_pct = ifelse(is.na(administered_dose1_recip_65plus_pop_pct),
+  #                                                         lag(administered_dose1_recip_65plus_pop_pct, n = 1),
+  #                                                         administered_dose1_recip_65plus_pop_pct)) %>%
   ungroup()
 
 ## check US
