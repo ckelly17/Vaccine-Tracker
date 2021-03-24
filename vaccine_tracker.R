@@ -6,9 +6,9 @@ library(googlesheets4)
 
 setwd("/Users/conorkelly/Documents/Vaccine-Tracker")
 
+#url <- "https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv"
 url <- "https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/404e6f94e3f6bc4f2e6921b0ac637339390453e0/vaccine_db.csv"
 
-#"https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv"
 ## import existing data cached from previous day
 old_data <- read_csv(url,
                      col_types = cols(
