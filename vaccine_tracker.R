@@ -78,24 +78,26 @@ temp <- old_data %>%
   mutate(date = ymd(date)) %>%
   bind_rows(n1, n2, n3) %>%
   filter(date < date_cutoff) %>%
+  arrange(desc(date)) %>%
   mutate(date = as.character(date))
-
+  
 # bind to old
-vaccines_raw <- bind_rows(temp, new_data) %>%
+vaccines_raw <- bind_rows(new_data, temp) %>%
   distinct(date, location, .keep_all = TRUE) %>%
   arrange(date, location) %>%
   group_by(location, date) %>%
   filter(doses_administered == min(doses_administered, na.rm = TRUE)) %>% # to get rid of duplicates for skipped days
-  ungroup()
+  ungroup() %>%
+  arrange(desc(date))
 
 ## replace series complete as 0 so it stays numeric
-vaccines_raw <- vaccines_raw %>%
-  mutate(series_complete_18plus = ifelse(is.na(series_complete_18plus), 0, series_complete_18plus)) %>%
-  mutate(series_complete_yes = ifelse(is.na(series_complete_yes), 0, series_complete_yes)) %>%
-  mutate(administered_dose1_recip = ifelse(is.na(administered_dose1_recip), 0, administered_dose1_recip)) %>%
-  mutate(series_complete_65plus = ifelse(is.na(series_complete_65plus), 0, series_complete_65plus)) %>%
-  mutate(series_complete_65plus_pop_pct = ifelse(is.na(series_complete_65plus_pop_pct), 0, series_complete_65plus_pop_pct)) %>%
-  mutate(series_complete_18plus_pop_pct = ifelse(is.na(series_complete_18plus_pop_pct), 0, series_complete_18plus_pop_pct))
+# vaccines_raw <- vaccines_raw %>%
+#   mutate(series_complete_18plus = ifelse(is.na(series_complete_18plus), 0, series_complete_18plus)) %>%
+#   mutate(series_complete_yes = ifelse(is.na(series_complete_yes), 0, series_complete_yes)) %>%
+#   mutate(administered_dose1_recip = ifelse(is.na(administered_dose1_recip), 0, administered_dose1_recip)) %>%
+#   mutate(series_complete_65plus = ifelse(is.na(series_complete_65plus), 0, series_complete_65plus)) %>%
+#   mutate(series_complete_65plus_pop_pct = ifelse(is.na(series_complete_65plus_pop_pct), 0, series_complete_65plus_pop_pct)) %>%
+#   mutate(series_complete_18plus_pop_pct = ifelse(is.na(series_complete_18plus_pop_pct), 0, series_complete_18plus_pop_pct))
 
 ## write to main repo
 write_csv(vaccines_raw, "vaccine_db.csv")
