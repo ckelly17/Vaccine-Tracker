@@ -6,14 +6,33 @@ library(googlesheets4)
 
 setwd("/Users/conorkelly/Documents/Vaccine-Tracker")
 
-#url <- "https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv"
-url <- "https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/404e6f94e3f6bc4f2e6921b0ac637339390453e0/vaccine_db.csv"
+url <- "https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv"
+#url <- "https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/404e6f94e3f6bc4f2e6921b0ac637339390453e0/vaccine_db.csv"
 
 ## import existing data cached from previous day
 old_data <- read_csv(url,
                      col_types = cols(
-                       Administered_Dose1 = "d",
-                       Administered_Dose1 = "d")) %>%
+                       administered_dose1 = "d",
+                       administered_dose2 = "d",
+                       administered_dose1_recip = "d",
+                       administered_dose1_pop_pct = "d",
+                       
+                       administered_dose1_recip_18plus = "d",
+                       administered_dose1_recip_18plus_pop_pct = "d",
+                       
+                       administered_dose1_recip_65plus = "d",
+                       administered_dose1_recip_65plus_pop_pct = "d",
+                       
+                       # series complete
+                       series_complete_yes = "d",
+                       series_complete_pop_pct = "d",
+                       
+                       series_complete_18plus = "d",
+                       series_complete_18plus_pop_pct = "d",
+                       
+                       series_complete_65plus = "d",
+                       series_complete_65plus_pop_pct = "d")) %>%
+
   mutate(date = as.character(date),
          skipped = "No",
          skip_n = 0) %>%
@@ -93,7 +112,7 @@ vaccines_raw <- bind_rows(temp, new_data) %>%
   arrange(date, location) %>%
   group_by(location, date) %>%
   filter(doses_administered == min(doses_administered, na.rm = TRUE)) %>% # to get rid of duplicates for skipped days
-  ungroup() %>%
+  ungroup() 
   #arrange(desc(date))
 
 ## replace series complete as 0 so it stays numeric
@@ -111,7 +130,7 @@ write_csv(vaccines_raw, "vaccine_db.csv")
 us_only <- vaccines_raw %>% filter(long_name %in% "United States") %>% 
   select(series_complete_18plus, everything())
 
-## clean for viz
+## clean for viz ----------------------------------------------
 vaccines <- vaccines_raw %>%
   rename(state_abb = location,
          state = long_name,
@@ -322,7 +341,13 @@ nrow(vaccines %>% distinct(state, date)) / nrow(vaccines)
 
 us <- vaccines %>%
   filter(state_abb %in% "US") %>%
-  select(date, series_complete_65plus_pop_pct, new_admin, doses_administered)
+  select(date, series_complete_65plus_pop_pct, 
+         series_complete_18plus_pop_pct,
+         administered_dose1_recip_18plus_pop_pct,
+         administered_dose1_recip_65plus_pop_pct,
+         new_admin, doses_administered,
+         administered_dose1,
+         administered_dose2)
   
   
   
