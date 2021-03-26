@@ -31,7 +31,12 @@ old_data <- read_csv(url,
                        series_complete_18plus_pop_pct = "d",
                        
                        series_complete_65plus = "d",
-                       series_complete_65plus_pop_pct = "d")) %>%
+                       series_complete_65plus_pop_pct = "d",
+                       
+                       #manufacture
+                       distributed_janssen = "d",
+                       distributed_moderna = "d",
+                       distributed_pfizer = "d")) %>%
 
   mutate(date = as.character(date),
          skipped = "No",
@@ -347,7 +352,10 @@ us <- vaccines %>%
          administered_dose1_recip_65plus_pop_pct,
          new_admin, doses_administered,
          administered_dose1,
-         administered_dose2)
+         administered_dose2,
+         distributed_moderna,
+         distributed_pfizer,
+         distributed_janssen)
   
   
   
