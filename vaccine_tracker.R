@@ -36,7 +36,11 @@ old_data <- read_csv(url,
                        #manufacture
                        distributed_janssen = "d",
                        distributed_moderna = "d",
-                       distributed_pfizer = "d")) %>%
+                       distributed_pfizer = "d",
+                       
+                       administered_janssen = "d",
+                       administered_moderna = "d",
+                       administered_pfizer = "d")) %>%
 
   mutate(date = as.character(date),
          skipped = "No",
@@ -335,13 +339,6 @@ ages$pct_known <- pct_known
 
 write_csv(ages, "ages_viz.csv")
 
-# by date
-vaccines %>% 
-  group_by(date) %>% 
-  filter(category %in% "United States") %>%
-  summarise(total = sum(doses_administered)) %>%
-  tail()
-
 nrow(vaccines %>% distinct(state, date)) / nrow(vaccines)
 
 us <- vaccines %>%
@@ -356,6 +353,22 @@ us <- vaccines %>%
          distributed_moderna,
          distributed_pfizer,
          distributed_janssen)
+
+### COUNTY-LEVEL MAP ###
+x <- fromJSON("https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxData?id=vaccination_county_condensed_data")
+county_vax <- x[[2]] %>%
+  clean_names()
+
+write_csv(county_vax, "county_vax.csv")
+
+# by date
+vaccines %>% 
+  group_by(date) %>% 
+  filter(category %in% "United States") %>%
+  summarise(total = sum(doses_administered)) %>%
+  tail()
+
+
   
   
   
