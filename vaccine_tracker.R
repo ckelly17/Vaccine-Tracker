@@ -368,7 +368,3 @@ vaccines %>%
   summarise(total = sum(doses_administered)) %>%
   tail()
 
-
-  
-  
-  
