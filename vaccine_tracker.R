@@ -7,7 +7,6 @@ library(googlesheets4)
 setwd("/Users/conorkelly/Documents/Vaccine-Tracker")
 
 url <- "https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv"
-#url <- "https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/404e6f94e3f6bc4f2e6921b0ac637339390453e0/vaccine_db.csv"
 
 ## import existing data cached from previous day
 old_data <- read_csv(url,
@@ -53,17 +52,18 @@ us_only <- old_data %>% filter(long_name %in% "United States") %>%
 ## get new data
 return <- fromJSON("https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxData?id=vaccination_data")
 
-history <- read_csv("https://raw.githubusercontent.com/COVID19Tracking/covid-tracking-data/master/data/cdc_vaccinations_timeseries_daily.csv") %>%
-  clean_names() %>%
-  filter(date >= "2021-02-12") %>%
-  mutate(date = as.character(date))
-
 new_data <- return[[2]] %>%
   clean_names() %>%
   mutate(date = as.character(ymd(date))) %>%
   distinct(date, location, .keep_all = TRUE) %>%
   mutate(skipped = "No",
          skip_n = 0) # to flag if CDC did not upload for some days
+
+yest <- fromJSON("https://raw.githubusercontent.com/COVID19Tracking/covid-tracking-data/2ce92848e7587f3eb9cc65a0b471e16a76dfe22d/data/cdc_vaccinations.json")
+yest <- yest[[2]] %>%
+  clean_names()
+
+new_data <- bind_rows(new_data, yest)
 
 date_cutoff <- ymd(max(new_data$date, na.rm = TRUE))
 
@@ -88,6 +88,11 @@ three_days_ago <- new_data %>%
 # save a copy
 date <- as.character(max(ymd(new_data$date)))
 write_csv(new_data, paste0("daily_backup/", date, ".csv"))
+
+history <- read_csv("https://raw.githubusercontent.com/COVID19Tracking/covid-tracking-data/master/data/cdc_vaccinations_timeseries_daily.csv") %>%
+  clean_names() %>%
+  filter(date >= "2021-02-12") %>%
+  mutate(date = as.character(date))
 
 ## add skipped values to old
 last <- old_data %>%
