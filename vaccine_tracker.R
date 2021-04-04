@@ -59,11 +59,11 @@ new_data <- return[[2]] %>%
   mutate(skipped = "No",
          skip_n = 0) # to flag if CDC did not upload for some days
 
-yest <- fromJSON("https://raw.githubusercontent.com/COVID19Tracking/covid-tracking-data/2ce92848e7587f3eb9cc65a0b471e16a76dfe22d/data/cdc_vaccinations.json")
-yest <- yest[[2]] %>%
-  clean_names()
+# yest <- fromJSON("https://raw.githubusercontent.com/COVID19Tracking/covid-tracking-data/2ce92848e7587f3eb9cc65a0b471e16a76dfe22d/data/cdc_vaccinations.json")
+# yest <- yest[[2]] %>%
+#   clean_names()
 
-new_data <- bind_rows(new_data, yest)
+# new_data <- bind_rows(new_data, yest)
 
 date_cutoff <- ymd(max(new_data$date, na.rm = TRUE))
 
