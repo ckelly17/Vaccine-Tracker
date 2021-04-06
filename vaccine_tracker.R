@@ -184,7 +184,12 @@ vaccines <- vaccines %>%
          administered_dose2 = ifelse(is.na(administered_dose2), administered_dose2_recip, administered_dose2),
          
          new_dose1 = ifelse(n >= 2, administered_dose1 - lag(administered_dose1, 1), 0),
-         new_dose2 = ifelse(n >= 2, administered_dose2 - lag(administered_dose2, 1), 0)) %>%
+         new_dose2 = ifelse(n >= 2, administered_dose2 - lag(administered_dose2, 1), 0),
+         
+         ## fully vax, dose 1, J&J
+         new_fully_vax = ifelse(n >= 2, series_complete_yes - lag(series_complete_yes, 1), 0),
+         new_admin_jj = ifelse(n >= 2, administered_janssen - lag(administered_janssen, 1), 0),
+         new_partial_vax = ifelse(n >= 2, administered_dose1_recip - lag(administered_dose1_recip, 1), 0)) %>%
   
   ungroup() %>%
   
