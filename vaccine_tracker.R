@@ -108,7 +108,7 @@ n3 <- last %>%
   mutate(date = date + 3)
 
 temp <- old_data %>%
-  mutate(date = ymd(date)) %>%
+  mutate(date = mdy(date)) %>%
   bind_rows(n1, n2, n3) %>%
   filter(date < date_cutoff) %>%
   #arrange(desc(date)) %>%
