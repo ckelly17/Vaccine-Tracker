@@ -120,8 +120,15 @@ vaccines_raw <- bind_rows(temp, new_data) %>%
   arrange(date, location) %>%
   group_by(location, date) %>%
   filter(doses_administered == min(doses_administered, na.rm = TRUE)) %>% # to get rid of duplicates for skipped days
-  ungroup() 
+  ungroup()
   #arrange(desc(date))
+
+
+
+## 2021-04-13 hot fix
+vaccines_raw <- vaccines_raw %>%
+  mutate(doses_administered = ifelse(date == "2021-04-13" & location %in% bad_states,
+                                     lag(doses_administered, n=1), doses_administered))
 
 ## replace series complete as 0 so it stays numeric
 # vaccines_raw <- vaccines_raw %>%
@@ -150,6 +157,8 @@ vaccines <- vaccines_raw %>%
   arrange(state, date) %>%
   mutate(n = row_number())
 
+# April 13 fix
+bad_states <- c("GA", "ME", "WV", "IL", "VT", "ID")
 
 ## fill in miss values for dose 2 on 1/14
 vaccines <- vaccines %>%
@@ -158,7 +167,16 @@ vaccines <- vaccines %>%
 ## fix March 13 total administered
 vaccines <- vaccines %>%
   mutate(doses_administered = ifelse(state %in% "United States" & date == "2021-03-13", 
-                                     104048005, doses_administered))
+                                     104048005, doses_administered),
+         
+         # April 13 fix
+         doses_administered = ifelse(state_abb %in% bad_states & date == "2021-04-13", 
+                                     lag(doses_administered), doses_administered),
+         
+         doses_administered = ifelse(state_abb %in% "US"  & date == "2021-04-13", 
+                                     doses_administered - (108500*2), doses_administered)) # for Ga, Me, WV, IL, VT
+
+
 
 # get new values
 vaccines <- vaccines %>%
