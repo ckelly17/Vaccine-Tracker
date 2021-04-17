@@ -381,6 +381,56 @@ x <- fromJSON("https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxData?id
 county_vax <- x[[2]] %>%
   clean_names()
 
+## elections 2020
+
+prez20_raw <- read_csv("https://raw.githubusercontent.com/kjhealy/us_elections_2020_csv/master/results_current.csv")
+
+prez20 <- prez20_raw %>%
+  filter(race %in% "President") %>%
+  select(fips5, lname, votes) %>%
+  filter(!is.na(fips5),
+         lname %in% c("Biden", "Trump"))
+
+nrow(distinct(prez20, fips5, lname)) / nrow(prez20) # not unique, need to summarize by FIPS
+
+prez20 <- prez20 %>%
+  group_by(fips5, lname) %>%
+  summarize(votes = sum(votes, na.rm = TRUE))
+
+nrow(distinct(prez20, fips5, lname)) / nrow(prez20) # not unique, need to summarize by FIPS
+
+# pivot wider
+prez20_wide <- prez20 %>%
+  pivot_wider(id_cols = c(fips5),
+              names_from = lname,
+              values_from = votes) %>%
+  arrange(fips5) %>%
+  mutate(total_votes = Biden + Trump,
+         biden_pct = Biden / total_votes,
+         biden_pct_bucket = "Biden + 10 or more",
+         biden_pct_bucket = ifelse(biden_pct < .55 & biden_pct > .45, "Biden +/- 10", biden_pct_bucket),
+         biden_pct_bucket = ifelse(biden_pct <= .45, "Trump +10 or more", biden_pct_bucket)) %>%
+  rename(fips = fips5)
+
+## make sure fips codes have zero in front if need be
+# prez20_wide$fix_fips <- ifelse(prez20_wide$fips < 10000, 1, 0)
+# prez20_wide$fips <- as.character(prez20_wide$fips)
+# prez20_wide$fips <- ifelse(prez20_wide$fix_fips == 1, paste0("0", prez20_wide$fips), prez20_wide$fips)
+
+county_vax <- left_join(county_vax, prez20_wide, by = "fips") %>%
+  mutate(biden_pct = ifelse(is.na(biden_pct), 9999, biden_pct))
+#check <- stata_join(county_vax, prez20_wide, keys = "fips")
+
+#check %>% tab2(merge, state_name)
+
+cty_deets_raw <- read_csv("https://raw.githubusercontent.com/dujamaa/covid-19_race_and_income/master/data/counties.csv") %>%
+  clean_names()
+
+cty_deets  <- cty_deets_raw %>%
+  select(fips, rural_urban_continuum_code_2013, percent_of_adults_with_a_bachelors_degree_or_higher_2014_18, medhhinc_2018, povall_2018)
+
+county_vax <- left_join(county_vax, cty_deets, by = "fips")
+
 write_csv(county_vax, "county_vax.csv")
 
 # by date
