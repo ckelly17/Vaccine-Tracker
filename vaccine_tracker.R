@@ -8,6 +8,7 @@ setwd("/Users/conorkelly/Documents/Vaccine-Tracker")
 
 url <- "https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv"
 
+
 ## import existing data cached from previous day
 old_data <- read_csv(url,
                      col_types = cols(
@@ -51,8 +52,14 @@ us_only <- old_data %>% filter(long_name %in% "United States") %>%
 
 ## get new data
 return <- fromJSON("https://covid.cdc.gov/covid-data-tracker/COVIDData/getAjaxData?id=vaccination_data")
+yesterday <- fromJSON("https://raw.githubusercontent.com/COVID19Tracking/covid-tracking-data/master/data/cdc_vaccinations.json")
 
-new_data <- return[[2]] %>%
+new_data <- return[[2]]
+yest <- yesterday[[2]]
+
+#new_data <- bind_rows(new_data, yest)
+
+new_data <- new_data %>%
   clean_names() %>%
   mutate(date = as.character(ymd(date))) %>%
   distinct(date, location, .keep_all = TRUE) %>%
@@ -109,7 +116,7 @@ n3 <- last %>%
 
 temp <- old_data %>%
   mutate(date = ymd(date)) %>%
-  bind_rows(n1, n2, n3) %>%
+  #bind_rows(n1, n2, n3) %>%
   filter(date < date_cutoff) %>%
   #arrange(desc(date)) %>%
   mutate(date = as.character(date))
@@ -122,8 +129,6 @@ vaccines_raw <- bind_rows(temp, new_data) %>%
   filter(doses_administered == min(doses_administered, na.rm = TRUE)) %>% # to get rid of duplicates for skipped days
   ungroup()
   #arrange(desc(date))
-
-
 
 ## 2021-04-13 hot fix
 vaccines_raw <- vaccines_raw %>%
