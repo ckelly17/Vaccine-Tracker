@@ -325,6 +325,14 @@ vaccines <- vaccines %>%
 us <- vaccines %>%
   filter(state_abb %in% "US")
 
+## regions
+regions <- read_csv("https://raw.githubusercontent.com/cphalpert/census-regions/master/us%20census%20bureau%20regions%20and%20divisions.csv") %>%
+  clean_names() %>%
+  select(state_abb = state_code, region)
+
+vaccines <- left_join(vaccines, regions, by = "state_abb")
+
+
 # export  
 write_csv(vaccines, "vaccine_viz.csv")
 
