@@ -332,7 +332,6 @@ regions <- read_csv("https://raw.githubusercontent.com/cphalpert/census-regions/
 
 vaccines <- left_join(vaccines, regions, by = "state_abb")
 
-
 # export  
 write_csv(vaccines, "vaccine_viz.csv")
 
