@@ -8,7 +8,6 @@ setwd("/Users/conorkelly/Documents/Vaccine-Tracker")
 
 url <- "https://raw.githubusercontent.com/ckelly17/Vaccine-Tracker/main/vaccine_db.csv"
 
-
 ## import existing data cached from previous day
 old_data <- read_csv(url,
                      col_types = cols(
@@ -57,6 +56,11 @@ yesterday <- fromJSON("https://raw.githubusercontent.com/COVID19Tracking/covid-t
 new_data <- return[[2]]
 yest <- yesterday[[2]]
 
+new_data <- read_csv("https://raw.githubusercontent.com/COVID19Tracking/covid-tracking-data/master/data/cdc_vaccinations_timeseries_daily.csv") %>%
+  clean_names() %>%
+  filter(date >= "2021-05-04") %>%
+  mutate(date = as.character(date))
+
 #new_data <- bind_rows(new_data, yest)
 
 new_data <- new_data %>%
@@ -89,11 +93,6 @@ three_days_ago <- new_data %>%
 # save a copy
 date <- as.character(max(ymd(new_data$date)))
 write_csv(new_data, paste0("daily_backup/", date, ".csv"))
-
-history <- read_csv("https://raw.githubusercontent.com/COVID19Tracking/covid-tracking-data/master/data/cdc_vaccinations_timeseries_daily.csv") %>%
-  clean_names() %>%
-  filter(date >= "2021-02-12") %>%
-  mutate(date = as.character(date))
 
 ## add skipped values to old
 last <- old_data %>%
